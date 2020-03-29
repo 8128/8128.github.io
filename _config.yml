@@ -98,4 +98,7 @@ theme: Butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/8128/8128.github.io
+  # example, https://github.com/hexojs/hexojs.github.io
+  branch: gh-pages
