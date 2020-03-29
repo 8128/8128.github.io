@@ -234,7 +234,7 @@ disqusjs:
   api: https://disqus.skk.moe/disqus/ #一般情況下無需修改 API 地址
   admin:
   adminLabel:
-  count: true # top_img顯示評論數
+  count: false # top_img顯示評論數
 
 laibili:
   enable: false
@@ -252,7 +252,7 @@ gitalk:
   distractionFreeMode: false # Facebook-like distraction free mode.
   pagerDirection: last # Comment sorting direction, available values are last and first.
   createIssueManually: false # Gitalk will create a corresponding github issue for your every single page automatically
-  count: true # top_img顯示評論數
+  count: false # top_img顯示評論數
 
 # valine comment system. https://valine.js.org
 valine:
@@ -269,7 +269,7 @@ valine:
   recordIP: false # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
   bg: /img/comment_bg.png # valine background
-  count: true # top_img顯示評論數
+  count: false # top_img顯示評論數
 
 # utterances
 # https://utteranc.es/
@@ -534,7 +534,7 @@ announcement:
 busuanzi:
   site_uv: true
   site_pv: true
-  page_pv: true
+  page_pv: false
 
 # 網頁開通時間
 # 格式: 月/日/年 時間
