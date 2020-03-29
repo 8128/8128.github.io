@@ -508,7 +508,7 @@ subtitle:
 # fontawesome圖標
 # 默認使用的是 fontawesome v4版本的圖標
 fontawesome_v5:
-  enable: true
+  enable: false
 
 ####    側邊欄    ####
 #-------------------------------------
