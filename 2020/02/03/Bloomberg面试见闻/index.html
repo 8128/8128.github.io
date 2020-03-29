@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bloomberg面试见闻 | 8128's Blog</title><meta name="description" content="繁华纽约中与homie互动"><meta name="keywords" content="travel,blog"><meta name="author" content="8128"><meta name="copyright" content="8128"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Bloomberg面试见闻"><meta name="twitter:description" content="繁华纽约中与homie互动"><meta name="twitter:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200321010223.png"><meta property="og:type" content="article"><meta property="og:title" content="Bloomberg面试见闻"><meta property="og:url" content="http://8128.me/2020/02/03/Bloomberg%E9%9D%A2%E8%AF%95%E8%A7%81%E9%97%BB/"><meta property="og:site_name" content="8128's Blog"><meta property="og:description" content="繁华纽约中与homie互动"><meta property="og:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200321010223.png"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="http://8128.me/2020/02/03/Bloomberg%E9%9D%A2%E8%AF%95%E8%A7%81%E9%97%BB/"><link rel="prev" title="旧金山准独角兽面试之行" href="http://8128.me/2020/02/04/%E6%97%A7%E9%87%91%E5%B1%B1%E5%87%86%E7%8B%AC%E8%A7%92%E5%85%BD%E9%9D%A2%E8%AF%95%E4%B9%8B%E8%A1%8C/"><link rel="next" title="搭建Jekyll博客技巧集" href="http://8128.me/2020/02/03/%E6%90%AD%E5%BB%BAJekyll%E5%8D%9A%E5%AE%A2%E6%8A%80%E5%B7%A7%E9%9B%86/"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2/dist/disqusjs.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-158741918-1', 'auto');
+ga('send', 'pageview');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"http://8128.me/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: 'false',
+  isFontAwesomeV5: true,
+  isPhotoFigcaption: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: true  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">23</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bloomberg"><span class="toc-text">Bloomberg</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bloomberg-HQ"><span class="toc-text">Bloomberg HQ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#纽约火车站-Penn-station"><span class="toc-text">纽约火车站 Penn station</span></a></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://raw.githubusercontent.com/8128/PicGo/master/20200321010223.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">8128's Blog</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Bloomberg面试见闻</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-02-03 23:00:00"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-02-03</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-03-28 21:41:12"><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-03-28</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/travel/">travel</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="post-meta__icon far fa-file-word" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">3.6k</span><span class="post-meta__separator">|</span><i class="post-meta__icon far fa-clock" aria-hidden="true"></i><span>阅读时长: 10 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="post-meta__icon far fa-comments" aria-hidden="true"></i><span>评论数:</span><span class="disqus-comment-count comment-count"><a href="http://8128.me/2020/02/03/Bloomberg%E9%9D%A2%E8%AF%95%E8%A7%81%E9%97%BB/#disqus_thread"></a></span></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><h2 id="Bloomberg"><a href="#Bloomberg" class="headerlink" title="Bloomberg"></a>Bloomberg</h2><p>Bloomberg的大名想必各位早已有所耳闻。迈克尔彭博身为一位传奇商人，这位带兄弟不仅仅在2001年至2013年担任了纽约市长，今日更是想要竞选总统。Bloomberg旗下顶梁柱虽然是Bloomberg terminal等tech业务，但论名号，还是彭博社赫赫有名。其仅仅二十多年就踩过路透社走上王位，也算一段佳话。</p>
+<p>我校是Bloomberg的target school，每到秋季他们便会来我校的career fair招生。因为我们的computer science不在ENG学院，而且有自己的career fair，所以bb（后文就将Bloomberg称作bb）会来我们学校两趟，一次来CS Day，一次来eng career fair。其后便会在career fair上收到的简历中筛查一波，举行个on campus interview，将四轮onsite面试迁到学校来，招一波学生。</p>
+<p>我并没有这个运气参加bb的on campus interview。第一次我去和cs day上的bb小姐姐畅聊之后，杳无音信。第二次他们再来，我又给一帅气小哥一顿文化输出，结果还是杳无音讯。后来才得知过不过其实不是由当天跟你聊天的员工决定，而是HR筛的简历。</p>
+<p>我室友有幸参与了on campus interview，并成功于bb上岸。室友升格成了布隆伯格工程师之后，我既为他激动，又有些生气——喵了个咪的为啥我连个面试都没有，我简历也不见得差啊。不料过了几天后便收到了邮件，让我电话面试。</p>
+<p>这里就要吐槽下这位神奇的HR了。我第一次简历投递后她并不想理我，但是第二次简历投递之后她又想面我了，这简历筛选机制是不是不太稳定啊。这位HR还有一些其他的神奇操作，例如打错candidate的名字啊，写错面试时间啊，还有给了我波士顿同学philadelphia的打车券之类的……不过那又能怎么样呢，当然是选择原谅她了！</p>
+<p>虽然错过了on campus interview，但是尚存一线机会，于是我一顿准备之后通过了电话面试，定下了在一月初前往Bloomberg HQ onsite。</p>
+<p>说来搞笑，因为在十二月时有一位CS院的同学（因为他来自北大，后文便唤其北大哥）连面三大公司，并连斩三个offer。三offer分别来自Bloomberg，Amazon和一家startup。我当时也有三个面试ongoing，也是Bloomberg，Amazon和一家startup，迷信玄学的我决定复制一次北大哥的传奇！于是我照猫画虎把这三个面试放到了一起！（后来发现面试顺序安排错了，跟北大哥安排三家的顺序相反，气得我直拍大腿）</p>
+<p>也正是为了模仿北大哥（事实证明模仿别人是没有出路的！），我选择了坐火车（Amtrak）前往Bloomberg，因为北大哥说火车站就在市中心，离bb很近，较飞机更加方便。bb说是给你订商务舱，其实那商务座和高铁二等座也差不多。国内的高铁是3+2，这所谓的商务舱也就2+2。下了火车之后先模仿北大哥去火车站边上的一兰拉面吃了碗拉面。我还坐到了店内的一号座位上。害，当时我还以为是什么祥兆呢。</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200321010442.png"  alt="一兰拉面"></p>
+<p>吃完面就打算用bb给报销的打车券打的去旅馆。结果一打开uber app，发现这打车券用不了。再定睛一看发现自己只有两张打车券。原来bb这抠门公司只给坐飞机的人四张打车券，假如你选择坐火车的话只有两张打车券，也就是你家到你们城市火车站来回的打车券。我人傻在原地，看了眼走路要五十分钟，最要命的是刚才一顿找打车券的操作把我手机整没电了，我刚记下旅店在哪，我手机就彻底黑了……我只好徒步走了四十多分钟去了旅店。</p>
+<p>假如你也要面bb，那你大概就是被安排住在fitzpatrick。可这fitzpatrick，每个人竟然也是不一样的。我被安排在了fitzpatrick manhattan，离bb大楼只有2分钟路程，我同学便被安排在了另一家，要走二十分钟……进去以后直接说自己是来面试bb的，接待便会给你房卡和早餐券。</p>
+<p>这家旅馆装修尚可，只是一走进电梯便有种跨入大清的错觉，电梯缓缓的蠕动速度让我不禁怀疑这是不是天龙人电梯，是不是人力在拉动这玩意上下行走。房间总体装修很棒，除了窗帘实际上不挡视野——我往外一看，对面的人在房间里做什么被我看得一清二楚。</p>
+<p>那晚简直煎熬。这不是我第一次面试，但我不知道为什么就是平静不下来，躺在床上心率都有120，张口闭口就是behavior question，why bloomberg。可能我当时已经意识到我们寝室只有一个headcount了。</p>
+<p>于是第二天，没咋睡的我把头发吹成大人模样，熨了下衬衫就下楼吃早饭了。不得不说早饭还不错，并不是自助餐，你到楼下一做，把早餐券给服务员，一会他便端着热腾腾的面包，一盘水果和一杯红茶过来了。随便吃了点我便起身前往Bloomberg headquarter，731 Lexington avenue。</p>
+<!--split-->
+
+<h2 id="Bloomberg-HQ"><a href="#Bloomberg-HQ" class="headerlink" title="Bloomberg HQ"></a>Bloomberg HQ</h2><p>作为一家金融公司，牌面这一块必须安排的明明白白的。我刚走进去，估计是门卫觉得我配不上他们金融公司的高雅气质，主动跑过来问我是干嘛的。我这么儒雅随和的人，当然是平和谦虚地对傲然的保安说：我是来面试的。于是被领到台前拍了张照片，然后带着临时工牌就上了六楼。</p>
+<p>六楼是布隆伯格的开放参观楼。当然说是开放参观，那你至少也得被邀请，不然你是门都进不来的。进去后小哥先让我去储物间放了大衣，然后让我坐在门口的沙发上，等HR过来。沙发前面就是摆放着各种零食饮料的大厅，大厅顶上还有各式各样的显示器，显示着各种金融数据，涨幅跌幅不同货币的汇率等等。我刚在那坐下来，边上的妹子便转过头来跟我打了个招呼握了个手。她说她是波士顿本地人，我听她说话的时候声音都在颤抖，搞得我也有些紧张，于是赶紧起身去打了杯热水让自己清醒点。</p>
+<p>不一时来面试的人越来越多，最后约莫到了十多个人，其中女生比例还挺高的。在约定的时间十多分钟后，HR终于到来，是个挺可爱的亚裔妹子。她先介绍了下一边供参观的bloomberg terminal，然后带着我们下了旋转扶梯。“这是世界上屈指可数的旋转扶梯。虽然这栋楼不是我们的，但是这座扶梯属于bloomberg”</p>
+<p>刚下电梯就能看见左侧的bloomberg播音台，和右边他们电视台的演播室，可谓十分炫酷。前方则是一排古董bloomberg机器，说是历史博物馆。这排古董机器前甚至禁止拍照。我眼尖，一眼看到里面一台二十年前的机子装的竟然是win7系统……你们确定这不是你们瞎搞的模型机吗？这是真机？</p>
+<p>其后我们便到了他们的办公区域。这办公室便和好莱坞电影里的美国金融公司办公室没啥区别，只是所有会议室都是玻璃门。HR还和我们讲了他们的transparency准则。说迈克尔彭博要求整个公司公开透明，所以会议室内部都是从外部可见的，大楼也是透明玻璃外壳，你们能从外面看到里面。有几次彭博看到员工开会时把门关着，边去把门拉开了。不料过了段时间再去发现他们把门又关上了。于是彭博大怒，第二天就把那扇门拆除了……</p>
+<p>她还说在彭博没有人有独自的封闭办公室，甚至连彭博本人也只是有个寻常工位而已，你甚至有时能在工位上见到他。她们彭博就是这么公开透明！</p>
+<p>于是我不禁开始怀疑昨天能看到对面房间的旅馆，是不是也算Bloomberg transparency的具体实现方案……</p>
+<p>之后我们便回到了最初的沙发处。此时已有一大堆面试官扎堆于沙发前，呼唤着你的名字。我便跟着我的面试官去了面试的会议厅。</p>
+<p>面试并不顺利。一是我发挥失常，二是我很不习惯用白板，三是面试官也有点呆呆的竟然没看懂我代码……结合我后两次平常心就面过了的经验来看，心态放好才是面试的关键，刷题多少还是minor problem。</p>
+<p>其中还有一段很尴尬的插曲。第一轮面完后两个面试官很热情地问我要不要去洗手间。我说不用不用，他们又问我要不要喝点热水，我想了想说好吧那我去接点水。于是我便从三楼的会议厅跟着他俩上了六楼……没想到上去了以后就下不来了！我再次企图从旋转扶梯那里下楼的时候被保安拦住了，告诉我“你这样的临时工牌只能待在六楼，除非有戴普通工牌的人陪同。”我大吃一惊，只好又去找接待。接待问我我面试官是谁，这我哪记得住啊，我只好报了我HR的名字。过了约莫半个小时，下一轮的面试官才前来把我接走了。也就因为这个事，我午饭也没吃就开始了第二轮……</p>
+<p>第二轮结束后便被告知今日已all set，便是凉凉的意思（一个通过的人会有四轮）。我脑袋里轰隆一声，准备了这么久的公司就这样凉了，准备了半天的behavior question都没被问到，人就被赶出去了。可能我瞬间面色憔悴，形容枯槁，面试官为了安慰我，问我要不要去28楼看看风景。我摇了摇头，“不用不用，我自己走就行了”（所以你们看到的封面文章图片并不是我拍的，而是我另一个面试的同学拍的）</p>
+<p>来到六楼后，我又跟他说不用再陪我了，我一人下去就行了。他坚持送我下去，说这是他的责任。一路到了门口，他告别的时候跟我说：“看你的表情，我知道你一路上可能想了很多，但是请不用太纠结于这两轮的面试，继续加油吧。”</p>
+<p>even he rejected me he’s still a nice guy </p>
+<h2 id="纽约火车站-Penn-station"><a href="#纽约火车站-Penn-station" class="headerlink" title="纽约火车站 Penn station"></a>纽约火车站 Penn station</h2><p>我端着我还没动过的午饭饭盒走出了bloomberg大楼，一副刚被解雇的落魄模样，开始漫无目的的在纽约转悠。bloomberg的火车票出发时间是5 pm，因为他默认你可能会面到四点。然而我两点不到就出来了，走到火车站时也才三点。刚进火车站便看到KFC老爷爷温暖人心的笑，我决定在快餐店门口座椅上休息会</p>
+<p>我把bb给我的饭盒放在了桌上，坐在座位上刷起了一亩三分地。不一会一个年迈的黑人女性走到我边上，问我能不能坐在我边上。当时我还没警觉，我说你坐呗。于是她便坐了下来，在我身边吃完了她的三明治，然后走了。走的时候还对我说了句thank you。我疑惑，问thank you for what？她说thank you for let me sit here。这着实让我摸不着头脑。</p>
+<p>结果不一时又一个黑人女性过来了，问我身上有没有钱，她想吃东西。我心情也不好，跟她说了句没有，便没再说话。可她却缠着我，不肯离开。我便从bb的午餐盒中拿出了bb的旅行报销prepaid card，接着把午餐盒推给了她。“你要吃东西你吃这个吧”我跟她说。不料她竟然还露出了一副嫌弃的表情！此时旁边的必胜客老板早就看这几个流浪汉不爽多时了，叫来了警察要赶走她。她见警察靠过来，便拿起我的bb饭盒走了……</p>
+<p>我寻思着饭盒也给出去了，肚子也有点饿，还是买点KFC垫垫吧，于是去KFC排队买吮指原味鸡。不一时竟看到那拿了我饭盒的黑人女性转头回来了，开始坐下吃我饭盒里的三明治。不久后，远处一个高大壮硕的黑哥走了过来，开始跟拿了我饭盒的黑人女性聊天，聊完便向我这里走来。我心中暗道一声不好，但又无法溜溜球，只好噘嘴强装出一副李小龙的样子。只见那黑哥过来，“yo，you still have any free sandwich？”</p>
+<p>“no, not any more. that’s the last one”</p>
+<p>接着黑哥就冷哼一声，沉身猛力用肩膀朝我冲撞了过来。靠，要不是我李小龙附体，可能真被他撞倒，在下怎么也是70kg级选手，虽然晃了晃还是稳如泰山的站住了。</p>
+<p>旋即警察们又来了一趟。这次是真正的把这流浪汉两兄妹赶走了。我总算是能平下心来吃了顿原味鸡，跑路回家。</p>
+<p>总的来说bb的面试还是令人失望。倘若再给我一次机会，我一定不那么费劲心力了。花的时间太多，让我有种必须成功的压力。这过大的压力实在不一定是件好事。压力之下还是冷静比较重要。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">8128</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://8128.me/2020/02/03/Bloomberg%E9%9D%A2%E8%AF%95%E8%A7%81%E9%97%BB/">http://8128.me/2020/02/03/Bloomberg%E9%9D%A2%E8%AF%95%E8%A7%81%E9%97%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://8128.me" target="_blank">8128's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/travel/">travel</a><a class="post-meta__tags" href="/tags/blog/">blog</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/8128/PicGo/master/20200326135918.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/02/04/%E6%97%A7%E9%87%91%E5%B1%B1%E5%87%86%E7%8B%AC%E8%A7%92%E5%85%BD%E9%9D%A2%E8%AF%95%E4%B9%8B%E8%A1%8C/"><img class="prev_cover lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200321010044.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">旧金山准独角兽面试之行</div></div></a></div><div class="next-post pull_right"><a href="/2020/02/03/%E6%90%AD%E5%BB%BAJekyll%E5%8D%9A%E5%AE%A2%E6%8A%80%E5%B7%A7%E9%9B%86/"><img class="next_cover lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200321010401.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">搭建Jekyll博客技巧集</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/03/21/南疆游记/" title="南疆游记"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/0427C6ED-4414-40A7-80D6-62B86DF0C8DA_1_105_c.jpeg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-21</div><div class="relatedPosts_title">南疆游记</div></div></a></div><div class="relatedPosts_item"><a href="/2020/02/04/旧金山准独角兽面试之行/" title="旧金山准独角兽面试之行"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200321010044.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-02-04</div><div class="relatedPosts_title">旧金山准独角兽面试之行</div></div></a></div><div class="relatedPosts_item"><a href="/2020/02/26/SOLO美国租房骗子/" title="SOLO美国租房骗子"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200321005208.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-02-26</div><div class="relatedPosts_title">SOLO美国租房骗子</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="disqus_thread"></div><script>var disqus_config = function () {
+  this.page.url = 'http://8128.me/2020/02/03/Bloomberg%E9%9D%A2%E8%AF%95%E8%A7%81%E9%97%BB/';
+  this.page.identifier = '2020/02/03/Bloomberg面试见闻/';
+  this.page.title = 'Bloomberg面试见闻';
+};
+(function() { 
+  var d = document, s = d.createElement('script');
+  s.src = 'https://8128g.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 8128</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://8128.me/">blog</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode far fa-moon" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/search/local-search.js"></script></body></html>
