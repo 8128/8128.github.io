@@ -6,7 +6,11 @@ class:
       link: https://https://jerryc.me/
       avatar: https://jerryc.me/image/avatar.png
       descr: Theme Designer
-  
+    2:
+      name: Hexo
+      link: https://hexo.io/
+      avatar: https://raw.githubusercontent.com/8128/PicGo/master/20200329144329.png
+      descr: Hexo.io
 #     1:
 #       name: xxx
 #       link: https://blog.xxx.com
@@ -23,11 +27,11 @@ class2:
   link_list:
     1:
       name: 8128
-      link: https://8128.github.io
+      link: https://github.com/8128
       avatar: https://raw.githubusercontent.com/8128/PicGo/master/20200329023708.png
       descr: My Github
-    2:
-      name: RuntimeException2048
-      link: https://weibo.com/u/7107790901
-      avatar: https://raw.githubusercontent.com/8128/PicGo/master/20200329023635.png
-      descr: Weibo
+    # 2:
+    #   name: RuntimeException2048
+    #   link: https://weibo.com/u/7107790901
+    #   avatar: https://raw.githubusercontent.com/8128/PicGo/master/20200329023635.png
+    #   descr: Weibo
