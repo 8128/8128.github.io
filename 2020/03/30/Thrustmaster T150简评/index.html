@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thrustmaster T150简评 | 8128's Blog</title><meta name="description" content="图马思特T150,是否是一款合格的入门方向盘?"><meta name="keywords" content="blog,review,game"><meta name="author" content="8128,tty8128@outlook.com"><meta name="copyright" content="8128"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Thrustmaster T150简评"><meta name="twitter:description" content="图马思特T150,是否是一款合格的入门方向盘?"><meta name="twitter:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200330171628.png"><meta property="og:type" content="article"><meta property="og:title" content="Thrustmaster T150简评"><meta property="og:url" content="http://8128.me/2020/03/30/Thrustmaster%20T150%E7%AE%80%E8%AF%84/"><meta property="og:site_name" content="8128's Blog"><meta property="og:description" content="图马思特T150,是否是一款合格的入门方向盘?"><meta property="og:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200330171628.png"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="http://8128.me/2020/03/30/Thrustmaster%20T150%E7%AE%80%E8%AF%84/"><link rel="prev" title="相机入门" href="http://8128.me/2020/03/31/%E7%9B%B8%E6%9C%BA%E5%85%A5%E9%97%A8/"><link rel="next" title="Grunt教程" href="http://8128.me/2020/03/29/Grunt%E6%95%99%E7%A8%8B/"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2/dist/disqusjs.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-158741918-1', 'auto');
+ga('send', 'pageview');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"http://8128.me/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: 'false',
+  isFontAwesomeV5: false,
+  isPhotoFigcaption: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: false  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">29</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">17</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://raw.githubusercontent.com/8128/PicGo/master/20200330171628.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">8128's Blog</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Thrustmaster T150简评</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-03-30 17:10:32"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-03-30</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-03-31 21:51:01"><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-03-31</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/review/">review</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="post-meta__icon fa fa-file-word-o" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">1.5k</span><span class="post-meta__separator">|</span><i class="post-meta__icon fa fa-clock-o" aria-hidden="true"></i><span>阅读时长: 4 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><p>为什么会买一个方向盘呢？这就要从我不安的双脚讲起了。作为一个从小行为不端的人，我坐姿也不端，喜欢把脚踩在较高的地方，所以坐在桌前的时候总会不由自主地把脚放到桌子的横轴上。这坐久了我怕太胖把这铁栏给踩断了，于是寻思着要买一个foot hammock，就听见discord游戏群里有人在说他们正在用方向盘玩赛车游戏呢。我琢磨着假如有脚踏板，是不是就不用foot hammock了？脚应该会很自然地去踩油门吧！所以就去查了下方向盘价格，没想到T150正好打折，算了税也才141刀，二话不说直接下单了好吧。</p>
+<p>B&amp;H上写着两天送到货，我想你也太能吹牛逼了，这疫情的情况下，你在纽约我在加州，还都在爆发中心，你能两天给我送到了？结果两天以后收到一快递，啪啪啪打脸。</p>
+<p>拆开箱子，内容很简单，一个方向盘，一个脚踏板，一本说明书，没了。</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200330215453.jpeg"  alt=""></p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200330215445.jpeg"  alt=""></p>
+<p>换挡器可以自己买，你也可以用方向盘后面的换挡拨片。方向盘整体廉价感很重，都是塑料，只有拨片是金属的。拨片手感不错。</p>
+<p>踏板只有油门和刹车。假如你购买的是T150 pro，那么应该是有三个踏板。我买的时候T150税前129，T150 pro税前199，这特么多一个踏板70块钱，我可真是再见了您呐。踏板比较寒酸，是个塑料踏板。假如你没有买专门的赛车椅和方向盘支架套装，你的踏板可能会比较难放。你需要找个地方把它卡住，因为塑料制的它有点轻，和地面摩擦力是不够大的，尤其是你在用力踩踏刹车的时候（刹车比较硬）</p>
+<p>货到的时候固件版本比较低，我先连接了PC，到官网上下载了驱动进行了升级。注意，在链接PC的时候你需要将PS3/PS4的开关调整到PS3那边，这样你才能在PC上正常使用这款方向盘。假如插错的话请拔掉USB，调整开关，再重新插入PS4。</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200330221730.gif"  alt=""></p>
+<p>用这款方向盘我测试了几个游戏。在PS4平台，我测试的游戏有极品飞车：热度，极品飞车：复仇。在PC平台，我测试的游戏有DiRT Rally 2.0，WRC 7，DiRT 4，Assetto Corsa，Project CARS 2</p>
+<p>为什么要先提游戏呢？因为每个游戏中你玩方向盘的体验都是截然不同的，每个游戏都对他们的操作系统有所优化，所以你在方向盘上受到的力都是不同的。</p>
+<p>首先说一下极品飞车吧。这是个娱乐向的游戏，跟仿真没有半毛钱关系，连驾驶员第一视角都没有，跟第一视角最相近的也只有保险杠视角……I mean, 谁会想玩保险杠视角？谁想当保险杠啊？</p>
+<p>在极品飞车:复仇中，基本只有回正的回馈力。开过车的兄弟都知道，你转完之后方向盘会自己回正。复仇中提供的就是这个回正的力，而且给的特别大，回正了以后还会不由自主左右晃几下的那种。这种力度很不自然，回正速度没真车快，力道却比真车大。但是这也会让你开车变得很简单，反正就只有这一种方向的力嘛，你的方向很好控制</p>
+<p>在极品飞车:热度中，EA稍稍改变了一下方向盘手感，但依然稀烂，我个人感觉它甚至不如复仇。而且PS4 pro上这19年的新游戏竟然没有4K！竟然！没有！4K！我坐在我70寸彩电前面看这大果粒看得眼睛都瞎了。</p>
+<p>而在PC平台上的这些游戏，基本都是仿真向的。DiRT两款游戏我都非常推荐，新手上路可能非常难以把握，因为它们的轮胎漂移真的跟我们日常开车中的轮胎漂移完全不同。在DiRT Rally 2.0上我到现在还没开赢过AI（这玩意没有难度选择的我也是傻了）……这两款游戏的画面素质过硬，rally 2.0文件大小甚至达到100G+。下雨天开车你能听到车顶噼里啪啦雨滴落下来的声音，看到雨刷挂起，后视镜里面的尘埃在雨中稀稀落落得散去；雪天你则会被打滑搞得心态大崩，开几百米撞一次树……假如你在美国可以去<a href="https://www.cdkeys.com/" target="_blank" rel="noopener">CDKey</a>上购买，十多刀就能买到豪华版，非常非常划算。</p>
+<p>WRC 7全称是World Rally Championship 7，这是2017年World Rally Championship的官方游戏，个人体验下来手感是不如DiRT的，力反馈之类的都比较弱，感觉就是弱化了的DiRT，开车像开玩具</p>
+<p>然后就是Project CAR 2和Assetto Corsa，它们的关系就有点像DiRT和WRC的关系，Assetto Corsa就像个儿子版本的Project CAR 2，画质和手感都会差一截。这俩游戏都是跑赛道的，我对跑赛道没什么兴趣。它们俩也都是究极追求仿真的系列，好像赛车手在家训练的时候也会拿Project CAR来做模拟。我们T150这破方向盘，拟真？方程式拟真？呵呵，算了吧哥，不讲笑话了</p>
+<p>总之我认为花个141刀买了个方向盘非常值，它有入门级的力反馈系统，较低的反应延迟，比较准确的方向判定。最主要是能让你在这疫情的wfh时期休闲娱乐，开开心心出门开车，这实在是难能可贵。假如你想体验赛车游戏，又是个休闲玩家，并不想拟真，那就买吧！</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200330225614.GIF"  alt=""></p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:tty8128@outlook.com">8128</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://8128.me/2020/03/30/Thrustmaster%20T150%E7%AE%80%E8%AF%84/">http://8128.me/2020/03/30/Thrustmaster%20T150%E7%AE%80%E8%AF%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://8128.me" target="_blank">8128's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/blog/">blog</a><a class="post-meta__tags" href="/tags/review/">review</a><a class="post-meta__tags" href="/tags/game/">game</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/8128/PicGo/master/20200401004938.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/03/31/%E7%9B%B8%E6%9C%BA%E5%85%A5%E9%97%A8/"><img class="prev_cover lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200331194811.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">相机入门</div></div></a></div><div class="next-post pull_right"><a href="/2020/03/29/Grunt%E6%95%99%E7%A8%8B/"><img class="next_cover lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200329183951.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Grunt教程</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/03/21/南疆游记/" title="南疆游记"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/0427C6ED-4414-40A7-80D6-62B86DF0C8DA_1_105_c.jpeg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-21</div><div class="relatedPosts_title">南疆游记</div></div></a></div><div class="relatedPosts_item"><a href="/2020/02/26/SOLO美国租房骗子/" title="SOLO美国租房骗子"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200321005208.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-02-26</div><div class="relatedPosts_title">SOLO美国租房骗子</div></div></a></div><div class="relatedPosts_item"><a href="/2020/02/04/旧金山准独角兽面试之行/" title="旧金山准独角兽面试之行"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200321010044.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-02-04</div><div class="relatedPosts_title">旧金山准独角兽面试之行</div></div></a></div><div class="relatedPosts_item"><a href="/2020/02/03/Bloomberg面试见闻/" title="Bloomberg面试见闻"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200321010223.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-02-03</div><div class="relatedPosts_title">Bloomberg面试见闻</div></div></a></div><div class="relatedPosts_item"><a href="/2020/03/29/罗技MX Master 3简评/" title="罗技MX Master 3简评"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200329144956.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-29</div><div class="relatedPosts_title">罗技MX Master 3简评</div></div></a></div><div class="relatedPosts_item"><a href="/2020/03/22/程序员标配？Herman-Miller-Sayl/" title="程序员标配？Herman Miller Sayl"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200322150525.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-22</div><div class="relatedPosts_title">程序员标配？Herman Miller Sayl</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="disqus_thread"></div><script>var disqus_config = function () {
+  this.page.url = 'http://8128.me/2020/03/30/Thrustmaster%20T150%E7%AE%80%E8%AF%84/';
+  this.page.identifier = '2020/03/30/Thrustmaster T150简评/';
+  this.page.title = 'Thrustmaster T150简评';
+};
+(function() { 
+  var d = document, s = d.createElement('script');
+  s.src = 'https://8128g.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 8128</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://8128.me/">blog</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/search/local-search.js"></script></body></html>

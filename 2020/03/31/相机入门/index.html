@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>相机入门 | 8128's Blog</title><meta name="description" content="相机基础入门"><meta name="keywords" content="tutorial,photonics"><meta name="author" content="8128,tty8128@outlook.com"><meta name="copyright" content="8128"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="相机入门"><meta name="twitter:description" content="相机基础入门"><meta name="twitter:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200331194811.png"><meta property="og:type" content="article"><meta property="og:title" content="相机入门"><meta property="og:url" content="http://8128.me/2020/03/31/%E7%9B%B8%E6%9C%BA%E5%85%A5%E9%97%A8/"><meta property="og:site_name" content="8128's Blog"><meta property="og:description" content="相机基础入门"><meta property="og:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200331194811.png"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="http://8128.me/2020/03/31/%E7%9B%B8%E6%9C%BA%E5%85%A5%E9%97%A8/"><link rel="prev" title="TypeScript 笔记" href="http://8128.me/2020/04/01/TypeScript%20%E7%AC%94%E8%AE%B0/"><link rel="next" title="Thrustmaster T150简评" href="http://8128.me/2020/03/30/Thrustmaster%20T150%E7%AE%80%E8%AF%84/"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2/dist/disqusjs.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-158741918-1', 'auto');
+ga('send', 'pageview');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"http://8128.me/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: 'false',
+  isFontAwesomeV5: false,
+  isPhotoFigcaption: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: true  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">29</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">17</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#相机种类"><span class="toc-text">相机种类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单反"><span class="toc-text">单反</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无反-微单-微电"><span class="toc-text">无反&#x2F;微单&#x2F;微电</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#微单和单反区别"><span class="toc-text">微单和单反区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卡片机"><span class="toc-text">卡片机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相机解析"><span class="toc-text">相机解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#画幅"><span class="toc-text">画幅</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#画幅之间究竟有什么区别呢？"><span class="toc-text">画幅之间究竟有什么区别呢？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感光元件"><span class="toc-text">感光元件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ISO"><span class="toc-text">ISO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快门"><span class="toc-text">快门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#光圈"><span class="toc-text">光圈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#光圈大小"><span class="toc-text">光圈大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#曝光"><span class="toc-text">曝光</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#焦距"><span class="toc-text">焦距</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一般用什么焦距？"><span class="toc-text">一般用什么焦距？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对焦系统"><span class="toc-text">对焦系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#白平衡与RAW"><span class="toc-text">白平衡与RAW</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对焦速度"><span class="toc-text">对焦速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#录像"><span class="toc-text">录像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#像素"><span class="toc-text">像素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://raw.githubusercontent.com/8128/PicGo/master/20200331194811.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">8128's Blog</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">相机入门</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-03-31 19:42:58"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-03-31</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-03-31 21:51:01"><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-03-31</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/photonics/">photonics</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="post-meta__icon fa fa-file-word-o" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">11k</span><span class="post-meta__separator">|</span><i class="post-meta__icon fa fa-clock-o" aria-hidden="true"></i><span>阅读时长: 32 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><p>来源：</p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/40906537" target="_blank" rel="noopener">林夏</a></li>
+<li><a href="https://www.zhihu.com/question/20982898/answer/29803305" target="_blank" rel="noopener">王波</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/36878963" target="_blank" rel="noopener">woodlouse</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/39049149" target="_blank" rel="noopener">东方IC</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/39049149" target="_blank" rel="noopener">七工巧映像</a></li>
+<li><a href="https://www.zhihu.com/question/30468001/answer/49335630" target="_blank" rel="noopener">Molejin</a></li>
+<li><a href="https://www.zhihu.com/question/21427664/answer/40346193" target="_blank" rel="noopener">王波</a></li>
+<li><a href="http://iphoto.blog.163.com/blog/static/174404124200832982358951/" target="_blank" rel="noopener">几个必要的摄影名词解释</a></li>
+</ol>
+<h1 id="相机种类"><a href="#相机种类" class="headerlink" title="相机种类"></a>相机种类</h1><h2 id="单反"><a href="#单反" class="headerlink" title="单反"></a>单反</h2><p>单反的英文是Single Lens Reflex （SLR），意思是<strong>“单镜头反光式取景”</strong>。数码单反即DSLR。</p>
+<p>“单镜头”是说这个相机只有一个镜头，过去胶片时代曾存在一机两头的双反相机。</p>
+<p>“反光式取景”是指机身里面有一个反光板和一个五棱镜。穿过镜头的光线经过这两个小镜子的反射到达取景器，摄影者便可以从取景器里看到镜头拍到的景象。这样的取景结构被称为<strong>光学取景</strong>，自胶片时代就在使用。这样的取景结构不需要任何电力，即使关了机也能从取景器里看到图像。</p>
+<h2 id="无反-微单-微电"><a href="#无反-微单-微电" class="headerlink" title="无反/微单/微电"></a>无反/微单/微电</h2><p>“微单”并没有对应的英文词，因为在中国以外并没有类似“微单”的叫法。</p>
+<p>在国内被称为“微单”的这类相机在英文中被称为Mirrorless，直译是“没有镜子”，全称则是 Mirrorless Interchangeable-lens Camera（MILC） ，意思是<strong>无反光镜的可换镜头相机</strong>。其实中文中对这类相机也有“无反”这个叫法，只是没有“微单”这么响亮。微单相机内部的确也没有任何镜子，它采用的取景方式是<strong>电子取景</strong>，类似于我们的手机。</p>
+<h3 id="微单和单反区别"><a href="#微单和单反区别" class="headerlink" title="微单和单反区别"></a>微单和单反区别</h3><p>微单是无反光镜的、电子取景的、可换镜头的相机，<strong>与体积大小没有绝对关系。</strong>但一般来说单反还是比微单要大的。微单并不是微型单反。微单和单反都是可换镜头相机，所以<strong>不能换镜头的相机不能是微单或单反</strong></p>
+<p>有关更详细的区别和选择的问题，传送门：<a href="https://zhuanlan.zhihu.com/p/40906537" target="_blank" rel="noopener">林夏</a></p>
+<h2 id="卡片机"><a href="#卡片机" class="headerlink" title="卡片机"></a>卡片机</h2><p>卡片相机是指普通的数码相机，则非单反、非微单的小型数码相机，小巧的外形、相对较轻的机身以及超薄时尚的设计是衡量此类数码相机的主要标准。曾经卡片机几乎被手机斩尽杀绝，直到索尼RX100，佳能G7X等产品和手机拉开一定技术差距。但卡片机被手机消灭的大势仍在。</p>
+<h1 id="相机解析"><a href="#相机解析" class="headerlink" title="相机解析"></a>相机解析</h1><h2 id="画幅"><a href="#画幅" class="headerlink" title="画幅"></a>画幅</h2><p>“画幅”通俗点来讲就是相机的感光元件面积的大小，就是下图装在相机里面的那个东西。全幅或半幅，指的是相机内成像传感器的尺寸大小。全画幅传感器的尺寸与传统的35mm胶片相同，实际上并没有半画幅的说法，半画幅指的是APS-C，它是一种图像传感器的规格。现今数码单反相机中，大都是采用了小于135规格的CCD或CMOS感光器件，除了奥林帕斯的4/3系统和尼康<strong>/</strong>佳能全画幅以外，现存几乎全部都是和APS-C型胶片一样的大小:长宽比为3:2，边长近似为24.9×16.6mm，为了便于形容，人们就把类似这种大小的感光器件称之为”APS-C规格”。</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200331202240.png"  alt=""></p>
+<p><strong>目前，相机的区分总体上来讲是按照画幅来区分，大致分为：</strong><br>1、大画幅，用生命描写世界的感觉，骨灰级玩家。<br>2、中画幅，哈苏、飞思、富士，多用于商业摄影，对画质要求极高。<br>3、全画幅，我们通常说的135画幅就是它。<br>4、APS-C画幅，就是半画幅，多用于入门机型。<br>5、M43画幅，富士、奥林巴斯还有生产。<br>6、一英寸，常见于卡片机、摄像机。<br>再小就是我们手机的感光元件了。</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200331202324.png"  alt=""></p>
+<p>全画幅相机可以在高ISO下提供更好的画质表现。但并不是说半幅传感器相机的画质相比就有多差，在绝大多数情况下，半幅相机也能完成全画幅相要的工作，只是效果可能会稍差一些。就好比喝茶一样，有人用碗有人用茶杯，其实用碗喝茶同样可以很好的品茶，但是用茶杯就会更有情调，品起来味道更浓。</p>
+<p>举个栗子：D5500这样的半幅相机具有2400万像素的图像传感器，与全画幅的D750相同。然而，由于D750上的单位像素面积更大，因此它们对光更敏感。相应的，同样弱光的表现，全画幅要更佳。</p>
+<p>全画幅相机使用全画幅镜头，镜头是按1:1记录画面，比如讲50mm镜头，实际焦距就是50mm；而半画幅相机其使用的镜头要乘以一个系数，才是该镜头的实际焦距，仍用50mm 镜头为例，半画幅镜头就需要乘以1.6，也就是说实际镜头焦距是80mm。这样半画幅的照相机实际镜头的角度小于镜头标注的数值。</p>
+<p>从摄影素质上说，全画幅与半画幅相比，优势是有，不过不是很大，对于不是非常专业的人来说，几乎可以忽略不计。但是，也要看到全画幅也是有固有的缺点的：</p>
+<p>1.传感器尺寸较大的一个缺点，就是需要更大的相机体积，内部结构才能补偿传感器尺寸的增加。因此，除了微单，全幅机一般都比版半幅机要笨重。</p>
+<p>2.传感器一一种非常昂贵的材料成本，绝大多数全幅相机可以轻松地超过半幅相机两倍以上的价格。可能一不小心就会在相机上花上个5万、10万或更多，也不足为奇！比如用得最多的牌子佳能和尼康，入门机都是半画幅或3/4系统，体积小容易方便携带，摄影效果完全可以满足摄影初学者的要求；但对于专业的摄影师来说，买一台高端全幅的才是标配，连同各种镜头和器材，所要花的钱何止是十万八万那么简单。</p>
+<p>3.半幅相机能使用全幅镜头，但全幅相机不能使用半幅镜头。</p>
+<p>传送门：<a href="https://zhuanlan.zhihu.com/p/39049149" target="_blank" rel="noopener">七工巧映像</a></p>
+<h3 id="画幅之间究竟有什么区别呢？"><a href="#画幅之间究竟有什么区别呢？" class="headerlink" title="画幅之间究竟有什么区别呢？"></a><strong>画幅之间究竟有什么区别呢？</strong></h3><p>鉴于大家是新手或者消费级用户，我们重点拿全画幅跟APS-C画幅来聊一聊。这个时候我们回到刚开始的两个问题：镜头焦距。<strong>镜头也分为全幅镜头和半幅镜头，全幅镜头可以装在半幅机上，半幅镜头是不能装在全幅机上的</strong>。在半幅机上，镜头焦距都要乘以1.6的系数转换，我们称之为等效焦距。以55m为例，再对照下图来看一下。</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200331202500.png"  alt=""></p>
+<p><strong>如果装到半幅机上，站在同样的位置，得到的画面就是经过剪裁的。</strong>而想要得到相同的画面，我们就要站的再靠后一点，因为等效焦距成了82.5mm。同时，<strong>等效光圈也是同样实实在在存在的</strong>，背景虚化相对没那么好了。而当我们把半幅镜头装到全幅机上，由于感光元件大小不同，我们得到的画面是这样的。</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200331202528.png"  alt=""></p>
+<p><strong>所以全幅头可以装在半幅机上，而半幅镜头不可以装在全幅机上。</strong>我们建议大家的也是，去入手全幅镜头，即使买了半幅机，上全幅那也是早晚的事。<strong>但是、但是、但是，我们不是拉你下水啊，假如你考虑的非常清楚了。</strong>入手半幅也很好，<strong>讲真，半幅和全幅差距并没有那么的大</strong>。而相反的，半幅机和镜头在价格及重量上具有明显的优势。</p>
+<p>详细对比我们就不做了，举个例子：现在手机基本都达到了2000w像素，而相机大都是2000w像素，很明显的手机图片放大之后几乎没有细节，噪点也非常严重。而同像素的相机，却拥有更多的细节、更好的抗噪。因为感光元件大很多，但是相机之间不会有这么明显的差距。入坑前，大家自己权衡性价比吧！</p>
+<p>传送门：<a href="https://zhuanlan.zhihu.com/p/36878963" target="_blank" rel="noopener">woodlouse</a></p>
+<h2 id="感光元件"><a href="#感光元件" class="headerlink" title="感光元件"></a>感光元件</h2><p>数码相机的核心成像部件有两种：一种是广泛使用的CCD（电荷耦合）元件；另一种是CMOS（互补金属氧化物半导体）器件。与传统相机相比，传统相机使用“胶卷”作为其记录信息的载体，而数码相机的“胶卷”就是其成像感光元件。</p>
+<h2 id="ISO"><a href="#ISO" class="headerlink" title="ISO"></a>ISO</h2><p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200331211738.png"  alt=""></p>
+<p>传送门：<a href="https://www.zhihu.com/question/21427664/answer/40346193" target="_blank" rel="noopener">王波</a></p>
+<p>ISO – 感光度，是一个曝光率极高的词。货架上的胶卷有ISO100，200和400的几种，这就是感光速度不同的胶卷。ISO感光度是CCD/CMOS（或胶卷）对光线的敏感程度。如果用ISO100的胶卷，相机2秒可以正确曝光的话，同样光线条件下用ISO200的胶卷只需要1秒即可，用ISO400则只要0.5秒。  在数码时代，数码相机的主菜单里都有ISO选择，100，200，400或者800，这和胶卷上的一样。看机型不同，低的到ISO50，最高有到25600的，数字越大越敏感（感光度越高）。 </p>
+<p>午餐和爱情都流行快餐，什么事都要快点搞，按道理我们应该喜欢高感光度。但世界上没有免费午餐，高ISO虽然速度快但图像颗粒粗，经不起精细放大出图。所以风光摄影要用相机的最低感光度才可得到精细的画面。高ISO一般在万不得已的时候才用。 </p>
+<p>人在江湖身不由己，万不得已的时候很多，所以高ISO图片质量是数码相机最重要的指标之一。在弱光场合比如昏暗的室内，午夜的街头，ISO100时即使光圈开到最大，快门速度也需1/4秒甚至更慢才能正确曝光，这时不用三脚架是无法把相机端稳的，手一晃照片就糊；就算用三脚架，被摄者一转头照片同样会糊。闪光灯可以救急，但闪灯会破坏现场气氛，人会脸色不自然，而且相机内的小闪光灯有效距离不会超过四米，稍远的人物和景物就无法照亮了。更何况有些地方是不准使用闪光灯的，如博物馆剧院。我们没有办法只有提高数码相机感光度到ISO800甚至1600。  同样是1000万像素的小数码DC和数码单反DSLR，如果都设置在最低感光度来拍摄（例如ISO100或80），假设镜头的素质相同，它们所拍的图片分辨率和图片质量差距不是太大。但如果ISO提高到400来拍摄，图片质量的差别就明显了，DSLR拍出来的图像依然干净，和ISO100时所拍差别不大，而DC的图片质量则下降明显，噪点很大，颜色失真，细节丢失。如果继续提高到ISO800，小数码DC的图片质量就只能用惨不忍睹四个字来形容了，而数码单反的图片质量虽有下降但依然可以接受。如果进一步提高到ISO1600，大部分数码单反的图片质量也下降得厉害，但依然能满足10寸照片的放大需求，而此时小数码DC的图片质量之差，您需要一颗勇敢的心才敢看。  </p>
+<p>在像素相等的情况下，CCD/CMOS面积越大，高ISO的成像质量越好。也就是说：在CCD/CMOS面积一定的情况下，里面增加更多的像素反而会造成图像质量的下降。 所以现在的数码相机不应该在1000万像素以上再简单增加几百万像素，而应该在提高CCD/CMOS质量上下功夫。降低高感光度（高ISO）噪音水平以及增大曝光宽容度才是当务之急。 800万像素已经足够旅游摄影之需，我们在选择数码相机时就不该只看像素高低，而应该注意相机CCD/CMOS的大小。目前而言，解像度已经足够，该是重点关心图像质量的时候了。</p>
+<h2 id="快门"><a href="#快门" class="headerlink" title="快门"></a>快门</h2><p>在摄影术最初发明的那些年，拍张照片曝光时间一般都需要好几分钟，大部分照相机是不需要快门的，开始曝光的时候把镜头盖取下，然后看表，五分钟后盖上，照片完成。  后来，胶片的感光速度越来越快（ISO越来越高），曝光时间变为一分钟，几秒钟，1/10秒甚至几百分之一秒，这时候用手取镜头盖就不够快了。我们需要一个能准确控制曝光时间的东西，这个东西就是快门。 快门有机械快门，电子快门，以及电子机械联合快门等很多种类。 定义：快门就是相机里控制曝光时间的装置。  这里顺便介绍一下安全快门速度。在使用135相机拍摄的时候有一个 <strong>手持相机拍摄的安全速度原则：安全速度是焦距的倒数</strong>，如果使用35mm镜头，快门速度不得低于1/35秒，使用200mm镜头时速度不得低于1/200秒，否则图片就可能糊了。</p>
+<h2 id="光圈"><a href="#光圈" class="headerlink" title="光圈"></a>光圈</h2><p>光圈是一个用来控制光线透过镜头，进入机身内感光面的光量的装置，它通常是在镜头内。表达光圈大小我们是用f值。对于已经制造好的镜头，我们不可能随意改变镜头的直径，但是我们可以通过在镜头内部加入多边形或者圆型，并且面积可变的孔状光栅来达到控制镜头通光量，这个装置就叫做光圈</p>
+<h3 id="光圈大小"><a href="#光圈大小" class="headerlink" title="光圈大小"></a>光圈大小</h3><p>光圈英文名称为Aperture，光圈是一个用来控制光线透过镜头，进入机身内感光面的光量的装置，也是相机一个极其重要的指标参数，它通常是在镜头内。它的大小决定着通过镜头进入感光元件的光线的多少。表达光圈大小我们是用F值。</p>
+<p><strong>光圈的 f值 = 镜头的焦距 / 镜头口径的直径</strong></p>
+<p>从以上的公式可知，要达到相同的光圈f值，长焦距镜头的口径要比短焦距镜头的口径大。</p>
+<p>完整的光圈值系列如下：</p>
+<p>f1，f1.4，f2，f2.8，f4，f5.6，f8，f11，f16，f22，f32，f44，f64</p>
+<p>这里值得一提的是光圈 f 值愈小，在同一单位时间内的进光量便愈多，而且上一级的进光量刚好是下一级的两倍，例如光圈从 f8 调整到 f5.6，进光量便多一倍，我们也说光圈开大了一级。对于消费型数码相机而言，光圈 f 值常常介于 f2.8 - f16。此外许多数码相机在调整光圈时，可以做 1/3 级的调整。F后面的数值越小，光圈越大：光圈的作用在于决定镜头的进光量，光圈越大，进光量越多；F后面的数值越大，光圈越小：简单的说就是，在快门不变的情况下，光圈越大，进光量越多，画面比较亮；光圈越小，画面比较暗。</p>
+<p>详细解释：</p>
+<p>所有相机都基于小孔成像原理：拿一个密封箱子，在任何一面钻个小圆孔，然后把有孔的这面对着窗外，窗外的景象比如一棵树什么的，就会在圆孔对面的箱内壁生成 此树的倒影。假如我们在内壁涂上感光材料（装上胶卷或CCD/CMOS），这个有孔的箱子就是一台完整的照相机了。这就是针孔相机。  </p>
+<p>既然一台照相机可以不需要镜头，为什么现在的相机前面不是一个小圆孔而是几块玻璃呢？而且这几块玻璃（镜头）还卖得那么贵！这是因为小孔要成像的话，孔必须很小，这也是针孔相机名称的来历。如果孔开得和门一样大，这个孔就成不了像。所以我们没有小门成像一说。孔小进光量就小，所以玩针孔摄影非常锻炼人的耐心，一张照片曝光几分钟到几个小时都常见。而且，由于光的衍射干扰，针孔相机拍的图片都不够清晰，如雾里看花一般。  </p>
+<p>没有人原意花几个小时去拍一张模模糊糊的照片，我们要想办法加大进光量。有什么办法能够把这个小孔开大而又能生成清晰的图像呢？人们马上就想到了凸镜的聚光功能。把玻璃凸镜装到大孔上，问题不就解决了？  确实如此。相机镜头就是这样诞生的。今天数码相机的各种镜头都是几块凹凸镜的排列组合，然后外面用塑料或铁皮一包。有了镜头，小孔成像的这个孔 – 也就是下文中的光圈 – 就不再是针孔了，它变成了洞。  进光量问题解决。</p>
+<p>但有时候问题又来了：我们并不是任何时候都需要大洞。比如夏日沙滩上烈日当头，四处白花花一片，为了分清到底是人肉还是白沙，我们需要眯着眼睛仔细观察。镜头是照相机的眼睛，这时候相机也需要眯起眼睛。很显然，为了应付不同的光线强度，我们还需要给镜头装上能够调节这个洞的大小的装置，以便在强光时缩小为针孔，弱光时开成大洞。这个装置就是光圈。</p>
+<p>光圈英文名称为Aperture。一组凹凸镜再加上光圈就诞生了完整的镜头。 定义：光圈就是镜头里调节进光孔大小的装置。 常见的光圈值如下： F1， F1.4， F2， F2.8， F4， F5.6， F8， F11， F16， F22， F32， F44， F64。每两挡相邻光圈值之间进光量相差一倍。例如光圈从F4调整到F2.8，进光量便多一倍；从F2.8到F2又多一倍。也许您已经看出来了，光圈值和光圈实际大小是相反的，进光量最大时光圈为F1，最小时为F64。 对135相机来说大多数镜头的最小光圈为F22。</p>
+<h2 id="曝光"><a href="#曝光" class="headerlink" title="曝光"></a>曝光</h2><p>为了讲清曝光这个词，我们还是回到小孔成像。假设一个黑乎乎的密闭房间，一面墙壁上开了个小圆窗户，窗对面的内壁上安上感光材料（白沥青，大型胶卷或CCD/CMOS）。这就是一台大型房式照相机。在没有打开小窗之前，房间里是黑乎乎的。  我们打开小窗，光线从小孔而入，射到对面墙壁的胶卷上，产生光化反应（或光电反应，如果是CCD/CMOS），照片就诞生了。此过程就叫做曝光。要得正确曝光的图片，必须精确决定曝光量。所谓曝光量就是让多少光进入这个密闭房间里。如果进光量太大，照片就会白花花一片，晚上变成了白天。如果进光量太小，照片就会黑乎乎的，白人变成黑人。 幸好我们有了光圈和快门两样工具可以一起来控制曝光量。曝光就是光圈和快门的组合。 可以这样认为：光圈（值）大小其实就是那个小圆窗户开多大，快门（速度）就是窗户打开多久。假设窗户只打开1/4，时间为4秒钟可以正确曝光的话，很显然，窗户打开一半，时间2秒钟也能让底片正确曝光，因为1/4<em>4=1/2</em>2=1，进光量都是一样多。同样的，如果窗户全开，曝光时间就只需要1秒了。  假若一个镜头光圈全开为F4，用摄影行话来说，光圈F4快门速度1秒为正确曝光值，那F5.6和2秒以及F8和4秒也同样能得到准确曝光的图片。 重要结论：一张正确曝光的图片可以有N种不同的光圈和快门速度组合。 总结以上几个名词解释，有三个因素能影响一张图片是否正确曝光：光圈，快门速度，ISO。 其中光圈和速度联合决定进光量，ISO决定CCD/CMOS的感光速度。如果进光量不够，我们可以开大光圈或者降低快门速度，还是不够的话就提高ISO。 大光圈的缺点是解像度不如中等光圈，快门速度降低则图片可能会糊，提高ISO后图片质量也会下降 。没有完美的方案，如何取舍要灵活决定。 </p>
+<p><strong>测光与测光模式</strong> 曝光和测光是一对双胞胎，如果不能准确测定光照强度，正确曝光就无从谈起。1965年以前绝大多数相机都没有机内测光装置，拍照时要另外携带笨重的测光表，或者靠经验来估计光照强度。现在所有的数码相机都内置测光表，它能测量光线的强度，自动给出能正确曝光的光圈和快门速度，大大降低了摄影的技术门槛。 相机是如何实现自动测光的？原来每个数码相机里都有一个光敏电阻（不同强度的光线照射时电阻值发生变化），相机内的电脑根据电阻值的变化确定光线强度，进而确定曝光值（光圈，快门）。 测光模式主要有点测光，中央重点测光，区域（平均）测光三种。点测光只测取景框内一个小点的光线强度（此小点大约为取景框面积的10%到1%，看不同机型）。区域（平均）测光则把取景框分为5到63块（看机型不同），分别对每块测光然后再加权平均得到光照强度。中央重点测光是简化的区域（平均）测光，只把取景框分为中央圆圈和四周两块，分别测光，然后加权平均（中央圆圈的权重为70%左右）。 根据什么情况来采用不同的测光方式？大多数情况下用区域测光即可。在光线明暗反差很大时应该采用点测光。用区域（平均）测光或中央重点也可以，你可根据自己的艺术创意进行曝光补偿。</p>
+<p><strong>曝光补偿（exposure compensation）</strong></p>
+<p>到底怎样才算是正确曝光？这个问题没有绝对准确的答案。总原则：照片要能真实反映拍摄时的环境亮度。如果一张正午户外的照片被拍得昏暗如夜，这张照片就曝光不足，反之则是曝光过度。曝光是否准确是根据日常生活经验判断的。</p>
+<p>相机自动确定的曝光值90%以上是正确的，但也有不准的时候，典型的例子是雪景，本来应该雪白刺眼的场景拍出来却是一片灰色；再比如对着一堆煤球拍，本来是纯黑，拍出来却是灰煤。这种失误根源在于相机的反射式测光原理。</p>
+<p>我们之所以能看见东西，不外乎两种情况：一是物体本身可以发光，比如太阳或灯泡；大多数情况是物体能反射外来光线。反射的光线越多，物体就越亮，反之则越 暗。假设两个极端，纯黑色物体不会反射光线，反射率为零，而纯白的物体反射率是100%。在这两个极端之间取中间值就是不黑也不白的灰色，称为柯达灰，也 称为18%中间灰。</p>
+<p>以一张客厅照片为例，客厅墙壁又白又亮，而电视机的大屏幕又黑又暗，窗帘和家具等亮度居中。要以谁的亮度来确定曝光？相机自动测光就是取平均数，最后给出一个让图片达到中间灰的曝光值。</p>
+<p>相机内部的自动测光电脑是个死脑筋，它认为全世界所有场景的平均亮度都是18%中间灰。好在大部分生活场景都是明暗交织的，平均起来差不多是灰色，所以大多数情况下自动曝光自动测光都相对准确。但在雪景这样的纯白场景（或者煤球等纯黑场景）时，相机依然会给出中间灰效果的曝光值，拍出来就会白雪成灰雪，煤球成灰球。此时我们就要对自动曝光值予以修正，对雪景增加曝光，煤球减少曝光，这样才能拍出亮度和色调正确的照片。修正（增减）曝光值就叫做曝光补偿。</p>
+<p>曝光补偿的原则：白加黑减。如果构图中有大片白色物体或者有灯等特别明亮的物体，就要相应增加曝光量（增大光圈or/and减低快门速度）；如果取景框中有大片黑色的物体，则要减少曝光量。 一般来说，在光照比较平均的情况下相机的自动测光和曝光比较准确，但在明暗反差很大时自动曝光往往不准，需要手动暴光补偿。</p>
+<p>之所以需要曝光补偿，是因为相机的小电脑虽然聪明，但还没有聪明到能判断物体到底是什么，如果有一天电脑能辨别出白雪，茶杯，或者煤球，那也就不用人脑来补偿了。不过就算  相机能认识物体，在进行艺术创作时还是需要曝光补偿，例如我今天心情不好，想故意把明亮的世界拍得灰暗些；又比如我想故意增加曝光量，把一个深色皮肤的妹妹拍得白白的。这些事情相机的电脑永远学不会，因为它不懂我的心，所以我们永远需要补偿。</p>
+<p>在胶片时代，精确测光和曝光是极其重要的， 负片底片一旦曝光不足，色彩就非常难看；而反转片一旦过曝一档（1EV），其色彩和层次就消失大半，更何况只有在底片冲印后才知道曝光是否准确。在数码时代曝光的问题变得简单了，拍完之后可以立即回放，曝光不准可以马上改，而且如果图片以RAW格式存储的话，其抗过曝/欠曝能力是很强的，只要没有曝成完全没层次的一片纯白，过曝/欠曝一个EV之内的照片都能在后期电脑处理时调正，而且基本不漏痕迹。但过曝/欠曝太多还是不行，如果相差2EV以上，调正后的图片也会很难看。所以掌握曝光补偿白加黑减的原则依然重要。</p>
+<h2 id="焦距"><a href="#焦距" class="headerlink" title="焦距"></a>焦距</h2><h3 id="一般用什么焦距？"><a href="#一般用什么焦距？" class="headerlink" title="一般用什么焦距？"></a>一般用什么焦距？</h3><p>传送门<a href="https://www.zhihu.com/question/30468001/answer/49335630" target="_blank" rel="noopener">Molejin</a></p>
+<p>说一说各个焦距(焦距段)适合拍什么样的照片。这里的焦距(焦距段)是对全画幅而言的，在非全画幅相机上可以找到其除以1.6的焦距，拍出来的效果是差不多的。题主看18-135这支镜头的变焦环上是不是有18，24，35，50，85，135这几个数字和刻度，答主镜头不在身边记不太清了…不过这几个是定焦镜头中最常用的焦距，所以我们先说说这几个焦距的适用范围。 </p>
+<p>18-35mm焦距段通常被认为是广角段，视角广，透视效果明显，主要用于拍摄风光照片。18，24，35的定焦镜头根据具体需要选择，而变焦镜头只需在此焦段内任意选择合适的视角大小(与焦距挂钩)即可。在非全幅机上，18mm*1.6=28.8mm，这个焦距依然在广角段内，尚可接受。 </p>
+<p>50mm的定焦镜头被称为标准定焦镜头，因为它最接近人眼所看到的景象。这个焦距的镜头适用范围多样，个人认为最适宜用来抓怕，因为大概可以说是“所见即所得”。在非全幅机上，将变焦环对准35mm焦距刻度，所得效果大约和标准焦距是一样的。 </p>
+<p>85-135mm被认为是拍摄人像的最佳焦距段，这与透视畸变有关，经过实验发现偏小的焦距会使人的鼻子看起来非常大，偏大的焦距会使整张脸看起来太平，而85-135这个焦段所得的人面部五官最悦目。在此焦距段内任意焦距都可以用来拍摄人像，可以根据具体需要决定，但一般使用的是85mm焦距，题主可曾了解佳能和尼康的顶级人像镜头都是85mm？此外135mm已属于中长焦，根据需要可以使用在非人像摄影上。在非全幅机上，选择50mm焦距将得到等效80mm焦距，这就是为什么题主被告知拍摄人像将焦距定在略大于50mm处了。 </p>
+<p>此外，再介绍几个18-135镜头上没有的又比较常见的焦距。小于16mm的镜头(焦距)在《美国纽约摄影学院摄影教材》上被定义为鱼眼镜头，但通常被称作超广角镜头，顾名思义，超广角拥有比广角更广的视角，同样也是用于拍摄风光片为主。而鱼眼镜头，通常被用来特指厂家专门生产的一类焦距更小的镜头，最小可以小至8mm。这类鱼眼镜头(焦距)的视角甚至可以达到180°(全幅机上)，将其放在你眼睛平视的位置，它甚至能“看”到你的脚。它们在传感器上形成的影像成原型而不是长方形，具有严重的畸变，可见其属于一种特殊镜头，除非有特别的爱好否则很少用到。</p>
+<p>200mm是一般长焦镜头的最长端。长焦镜头的效果是将远处的物体拉近，简单说就是放大拍摄。长焦镜头视角小，透视不明显，主要用于拍摄远景。一般认为除非你有特殊需要(如拍摄体育赛事或野生动物)，否则不推荐使用200mm以上的焦距(镜头)，价格昂贵且实用性不高。这里特别提示一下18-135镜头安装在非全幅机上，长焦端可达210+mm的等效焦距，非常好用。</p>
+<p>最后再向题主推荐上文提到的《美国纽约摄影学院摄影教材》，其中系统化理论化地介绍了从设备到技术到技巧几乎全部的摄影知识，相当全面，几乎可以认为是摄影方面的标准教科书，是摄影学习中的必读书籍。</p>
+<h3 id="对焦系统"><a href="#对焦系统" class="headerlink" title="对焦系统"></a>对焦系统</h3><p>对焦系统，单反相机主要采用的是相位差对焦，最直观的就是对焦点的多少。这里存在一个误区，并不是点多就一定比点少好。关键要看对焦点的覆盖面积和精度，例如十字和双十字对焦点的数量和布局等。</p>
+<p>另一个关键参数则为对应光圈，例如我们经常会看到描述中央对焦点的一句话是“中央为对应f/2.8的双十字型自动对焦”，这句话可解释为：当使用f/2.8及其以上光圈时，相机中央点对焦点会启动双十字感应；当使用小于f/2.8的光圈时，中央点则只会使用单十字线性感应。</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200331205022.png"  alt=""></p>
+<p>除了焦距之外，最大光圈也是一个非常重要的参数，一般定焦镜头可以达到f/1.8、f/1.4的较大光圈。顶级变焦头一般为恒定f/2.8，常用中价位的变焦头则为浮动光圈，比如70-300mm f/3.5-5.6，这实际是说，在70mm端最大光圈为f/3.5，在300mm端最大光圈为f/5.6。大光圈会带来较大的进光量，景深更浅更虚化。</p>
+<p><strong>详解光圈</strong>：</p>
+<p>光线经过透镜就会聚成一点（焦点） ，镜头的焦距就是从镜片（或镜片组）的中心到焦点的距离，单位是毫米（mm）。对全幅135数码单反相机以及我们以前常用的135胶卷相机（使用超市里的盒装胶卷）来说，焦距50mm的镜头称为“标准镜头”，简称标头，拍出来的照片类似肉眼平视的感觉（视角为45°左右）。<br>严格的定义是：标准镜头就是焦距等于底片（或CCD/CMOS）对角线长度的镜头。单张135底片是24x36mm，根据勾股定理计算，其对角线长度为43mm，所以135画幅的标头应该是43mm。在实际应用中我们把焦距为40-60mm的都称为标头。早期的单反相机是与50mm镜头捆绑销售的，这也许是称其为“标准镜头”的原因吧。<br>广角镜头（焦距小于35mm）能够让照相机“看得更宽阔”，因为它视角大；长焦镜头（焦距大于70mm）能让照相机“看得更远”，但视角窄。长焦镜头也称远摄镜头或望远镜头。从焦距的定义就可以推断出，广角镜头都身材矮小，长焦镜头都高大威猛。以后我们只要一看到那些又粗又长的大家伙，不用说那都是长焦头。<br>焦距固定的镜头即定焦镜头。1960年以前，变焦基本靠走。1965年之后，焦距可以调节的变焦镜头开始大量上市。变焦镜头的优势是明显的，改变焦距不用再走路，只需转动镜头筒。但变焦需要一套复杂的光学系统（其内部结构大多超过十片镜片），这给变焦镜头带来了 两个问题: 1. 体积和重量大; 2. 成像往往都不如最好的定焦镜头成像清晰。</p>
+<p><strong>光学变焦与数码变焦</strong></p>
+<p>我们经常看到数码相机广告上写XX倍光学变焦。这里的变焦倍数＝最大焦距值/最小焦距值。一个28-280mm变焦镜头的光学变焦倍数就是280mm/28mm，即10倍。光学变焦英文名称为Optical Zoom，它依靠镜片的位移来实现焦距的改变。光学变焦倍数越大，里面的镜片就越多，镜头体积相应较大，画质相对较低，光圈相对较小。<br>光学变焦并不是越大越好。一般来说，只要愿意花大价钱认真设计精心制作，以目前的技术水平，光学变焦比在4倍以内的镜头其光学素质才有可能接近或者达到定焦头的平均水准，比如佳能Canon 70-200mmF2.8IS镜头（市价两千美元，重1.5公斤）。超过4倍变焦的镜头其光学素质基本不可能达到定焦头的水平。<br>1995年以来市场上陆续出现了10倍以上的大变焦镜头，光学变焦越大当然越方便，但成像也会相应下降。2007年底上市的Panasonic松下FZ18数码相机其光学变焦为28-504mm，达到了不可思议的18倍，但实测这款相机的镜头边缘解像度相当差，看来18倍已经接近光学变焦目前的技术极限了。<br>关于数码变焦我只有三个字：骗人的。数码变焦只是电子放大，软件稍作改动就可以从一倍到一万倍变焦任君自取。只有光学变焦才是真正的变焦，数码变焦是厂家用来欺骗外行消费者的。</p>
+<p><strong>焦距与135相机镜头的分类</strong></p>
+<p>焦距              镜头类型              备注<br>14-24mm          超广角               视角很大，形变夸张，多用于拍摄建筑与风光<br>24-35mm           广角                 多用于拍摄建筑与风光以及街头人文抓拍<br>35-70mm          中焦                 视角接近人眼，多用于人文纪实抓拍<br>70-135mm         中长焦               视角比人眼窄，很多人像摄影师喜欢用这个焦段拍半身和头像的特写<br>135-300mm        长焦                 适合拍摄远距离物体。例如体育摄影、风光特写等等。<br>大于300mm        超长焦/望远           适合拍摄超远距离物体比如野生动物</p>
+<p>值得注意的是：一个镜头是不是标准镜头（标头）不是看它的焦距而是看它的视角，视角45度的就是标准镜头。对120相机来说80mm焦距镜头才是标头。在数码时代，对Nikon D5100等APS-C画幅的数码单反来说，35mm焦距的镜头就是标头。</p>
+<h2 id="白平衡与RAW"><a href="#白平衡与RAW" class="headerlink" title="白平衡与RAW"></a>白平衡与RAW</h2><p>要了解白平衡white balance就必须先了解另一个概念：色温color temperature。所谓色温就是以开尔文温度表示光线的色彩，单位是K。当物体被加热到一定的温度时就会发出光线，此光线不仅含有亮度的成份，更含有颜色的成份。我们常说的炉火纯青，即炉火的温度非常高，颜色才会达到青色，所以，温度越高，蓝色的成份越多，图像就会偏蓝；相反，温度越低，红色的成份就越多，图像就会偏红。光线的色温举例参见下表：</p>
+<p>光线的色温<br>光源                      色温（Ｋ）<br>蜡烛                       2000<br>钨丝灯                     2500-3200<br>荧光灯                     4500-6500<br>日光（平均）               5400<br>有云天气下的日光            6500-7000</p>
+<p>物体在不同色温的光源照射下会呈现不同的色调，在日光灯下整体偏白，在普通钨丝白炽灯下整体偏黄。白平衡就是照相机对白色的还原准确性。大多数情况下数码相机能准确判断光源的类型，拍出的照片颜色准确，但也有时候相机的电脑对色温做出了错误的判断，拍出的照片颜色惨不忍睹，严重偏蓝或发黄。这时候我们就要手动设置白平衡。中档以上的小数码DC和所有的数码单反DSLR都能在菜单里选择色温。</p>
+<p>但万一人脑也判断错误怎么办？要彻底解决白平衡和色温准确性的问题只有一个方案：选择RAW图片存储格式。</p>
+<p>高档小数码DC和所有DSLR都有图片存储格式选择。相对于Word文字文档，图片文件都巨大无比，典型的一千万像素数码照片如果以不压缩的TIFF格式存储，一张可能超过25MB。如果相机存储卡是1G（约1024MB），一张卡只能拍40张。所以不推荐TIFF存储格式。我们需要把巨大的图片文件压缩以便一张卡能存储更多照片。现最常用的图片压缩存储格式为JPEG，同样是一千万像素的照片，以JPEG存储一张1G的卡往往能拍100多张。</p>
+<p>但JPEG是一种有损压缩，拍两张一样的照片分别以TIFF和JPEG格式存储，你会发现JPEG图片丢失了某些细节。大部分相机都有图片质量选择，这实际上就是JPEG压缩比的选择，压缩得越厉害，文件越小，一张卡能存储更多照片，但细节丢失更多。</p>
+<p>数码相机内部都有一个小电脑，CCD/CMOS经曝光产生电子图片信号，相机内的小电脑把这些电子信号进行加工处理，再传输给存储卡。这些加工处理包括白平衡配置，颜色饱和度的增减，图片锐度和对比度增减，降低图片噪点等等，最后压缩转换为JPEG格式进行存储。</p>
+<p>RAW英文是原始的意思，这很好地说明了RAW图片的特点：它是原始的，CCD/CMOS经过曝光产生的图片电子信号直接传给存储卡，文件没有经过相机内部电路的任何图片参数和质量处理。所以RAW文件又被称为<strong>数码底片</strong>Digital Negatives。其实准确地说RAW文件也经过了压缩，但这是一种无损压缩，后期在电脑上可以准确还原，没有一点细节丢失。我们回家后在电脑上可以给RAW图片任意配置色温（彻底解决白平衡问题），调整图片的颜色，锐度，对比度，曝光补偿等等，可以这么说：RAW格式的图片几乎所有的参数都可以后期在电脑上调。桌面电脑比相机内的小电脑强大得多，我们后期手工精心处理RAW而转换成的JPEG图片肯定漂亮。</p>
+<p>这个世界当然没有完美的事，RAW文件最大的问题和TIFF文件一样，太大了。虽然通常比TIFF稍小一点，但还是比JPEG大两倍以上。好在现在的存储卡都卖成了白菜价，16G的卡才人民币一百多，问题不大。RAW文件第二个问题就是后期处理比较费时间。如果出门旅行十来天拍了上千张RAW图片，后期处理会让人头变得巨大。还好现在很多相机都可以同时存储JPEG和RAW，如果JPEG图片看起来还可以就不用处理RAW文件了。但同时存储JPEG和RAW，文件不是更大？唉，没办法。所以我最后的建议就是：重要图片的拍摄一律存储JPEG+RAW，一般的图片存JPEG.</p>
+<h2 id="对焦速度"><a href="#对焦速度" class="headerlink" title="对焦速度"></a>对焦速度</h2><h2 id="录像"><a href="#录像" class="headerlink" title="录像"></a>录像</h2><p>对于4K的支持度帧数，对于慢动作的支持度帧数，在动作画面中的快速对焦能力</p>
+<h2 id="像素"><a href="#像素" class="headerlink" title="像素"></a>像素</h2><p>像素，这个问题比较有争议。一款相机的最高像素等于它所拍摄最大尺寸图片分辨率的长×宽。比如索尼全幅无反A7，它拥有2430万有效像素，所以它能拍摄的最大尺寸照片分辨率为6000×4000。</p>
+<p>当像素越高，可裁切的余量也就越大，当压缩到我们常看的照片尺寸时，画质在一定程度上就会更好。但是像素越高，对相机的图像处理器、高感、后期时电脑的配置等，都会有较高的要求。所以，不要过分贪恋高像素。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>电池续航</li>
+<li>SD卡插槽</li>
+<li>显示器方向调整，是否方便翻转显示器以支持vlog</li>
+<li>麦克风声音质量</li>
+<li>是否支持外接麦克风</li>
+<li>重量，握感</li>
+<li>镜头支持，配件支持</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:tty8128@outlook.com">8128</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://8128.me/2020/03/31/%E7%9B%B8%E6%9C%BA%E5%85%A5%E9%97%A8/">http://8128.me/2020/03/31/%E7%9B%B8%E6%9C%BA%E5%85%A5%E9%97%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://8128.me" target="_blank">8128's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/tutorial/">tutorial</a><a class="post-meta__tags" href="/tags/photonics/">photonics</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/8128/PicGo/master/20200401004938.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/04/01/TypeScript%20%E7%AC%94%E8%AE%B0/"><img class="prev_cover lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200401004938.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">TypeScript 笔记</div></div></a></div><div class="next-post pull_right"><a href="/2020/03/30/Thrustmaster%20T150%E7%AE%80%E8%AF%84/"><img class="next_cover lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200330171628.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Thrustmaster T150简评</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/02/03/New-Blog/" title="New Blog"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/76CABFDC-D0E3-410E-B606-0C822BBEBE06_1_105_c.jpeg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-02-03</div><div class="relatedPosts_title">New Blog</div></div></a></div><div class="relatedPosts_item"><a href="/2020/03/29/Grunt教程/" title="Grunt教程"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200329183951.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-29</div><div class="relatedPosts_title">Grunt教程</div></div></a></div><div class="relatedPosts_item"><a href="/2020/03/29/MacOS关闭鼠标加速/" title="MacOS关闭鼠标加速"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200329145349.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-29</div><div class="relatedPosts_title">MacOS关闭鼠标加速</div></div></a></div><div class="relatedPosts_item"><a href="/2020/03/26/JS测试教程/" title="JS测试教程"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200326135918.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-26</div><div class="relatedPosts_title">JS测试教程</div></div></a></div><div class="relatedPosts_item"><a href="/2020/03/25/JS异步讲解-Asynchronous JavaScript/" title="JS异步讲解-Asynchronous JavaScript"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200322203138.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-25</div><div class="relatedPosts_title">JS异步讲解-Asynchronous JavaScript</div></div></a></div><div class="relatedPosts_item"><a href="/2020/03/23/MongoDB快速入门/" title="MongoDB快速入门"><img class="relatedPosts_cover lazyload"data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200323135523.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-03-23</div><div class="relatedPosts_title">MongoDB快速入门</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="disqus_thread"></div><script>var disqus_config = function () {
+  this.page.url = 'http://8128.me/2020/03/31/%E7%9B%B8%E6%9C%BA%E5%85%A5%E9%97%A8/';
+  this.page.identifier = '2020/03/31/相机入门/';
+  this.page.title = '相机入门';
+};
+(function() { 
+  var d = document, s = d.createElement('script');
+  s.src = 'https://8128g.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 8128</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://8128.me/">blog</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/search/local-search.js"></script></body></html>
