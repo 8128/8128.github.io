@@ -74,39 +74,29 @@ catch (err) { }
 
 The above schema defines the following constraints:
 
-- ```
-  username
-  ```
+- `username`
 
   - a required string
   - must contain only alphanumeric characters
   - at least 3 characters long but no more than 30
   - must be accompanied by `birth_year`
 
-- ```
-  password
-  ```
+- `password`
 
   - an optional string
   - must satisfy the custom regex pattern
   - cannot appear together with `access_token`
   - must be accompanied by `repeat_password` and equal to it
 
-- ```
-  access_token
-  ```
+- `access_token`
 
   - an optional, unconstrained string or number
 
-- ```
-  birth_year
-  ```
+- `birth_year`
 
   - an integer between 1900 and 2013
 
-- ```
-  email
-  ```
+- `email`
 
   - a valid email address string
   - must have two domain parts e.g. `example.com`

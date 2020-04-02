@@ -7,10 +7,11 @@ subtitle:
 comments: true
 cover: https://raw.githubusercontent.com/8128/PicGo/master/20200321004047.png
 optimized_image: 
-category: tutorial
+category: shell
 tags:
   - tutorial
   - code
+  - shell
 author: echoworlding
 ---
 
