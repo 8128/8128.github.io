@@ -165,9 +165,9 @@
             
             <tag> tutorial </tag>
             
-            <tag> mouse </tag>
-            
             <tag> mac </tag>
+            
+            <tag> mouse </tag>
             
         </tags>
       
@@ -199,6 +199,68 @@
             <tag> mouse </tag>
             
             <tag> tech </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MacOS下bash&amp;zsh切换与升级</title>
+      <link href="/2020/03/26/MacOS%E4%B8%8Bbash&amp;zsh%E5%88%87%E6%8D%A2%E4%B8%8E%E5%8D%87%E7%BA%A7/"/>
+      <url>/2020/03/26/MacOS%E4%B8%8Bbash&amp;zsh%E5%88%87%E6%8D%A2%E4%B8%8E%E5%8D%87%E7%BA%A7/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>zsh和bash都是shell，linux默认是bash，现在macOS最新版的系统Catalina默认是zsh。很多小伙伴可能想在Mac中切换bash到zsh，或者zsh到bash</p><h2 id="切换系统默认shell"><a href="#切换系统默认shell" class="headerlink" title="切换系统默认shell"></a>切换系统默认shell</h2><ul><li>从bash切换到zsh</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chsh -s /bin/zsh</span><br></pre></td></tr></table></figure><p>输入密码成功切换，重启终端即可使用 zsh</p><ul><li>从zsh切换到bash</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chsh -s /bin/bash</span><br></pre></td></tr></table></figure><p>重启终端即可。</p><p>还有一种方法是在左上角苹果-&gt;System Preference-&gt; Users &amp; Groups -&gt; 用密码解锁左下角高级设置 -&gt; 右键用户 -&gt; 在login shell选择bash</p><p>bash 的环境变量是<code>.bash_profile</code>文件。<br> zsh 的环境变量是<code>.zshrc</code>文件。</p><p>PS：如果从 bash 切换到 zsh，但想保留 bash 所设置的环境变量，可在 <code>.zshrc</code>文件末尾添加 <code>source ~/.bash_profile</code> 保存退出，并重启终端即可使用 bash 的环境变量</p><h3 id="关闭bash已过时提示"><a href="#关闭bash已过时提示" class="headerlink" title="关闭bash已过时提示"></a>关闭bash已过时提示</h3><p><strong>假如你还要继续后面的bash升级，你可以无视这一节，更新完bash提示自然会消失</strong></p><p>你在切换到bash之后，会不断收到terminal提示：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The default interactive shell is now zsh.</span><br><span class="line"></span><br><span class="line">To update your account to use zsh, please run `chsh -s /bin/zsh`.</span><br></pre></td></tr></table></figure><p>这就是苹果想让你去用默认的zsh。这倒也不奇怪，你放个旧版bash在这里，当然希望大家都去用新版zsh。假如你想关闭这条提示，你可以修改<code>.bash_profile</code>，如下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br></pre></td></tr></table></figure><p>然后向其中添加：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> macOS Catalina</span></span><br><span class="line"></span><br><span class="line">export BASH_SILENCE_DEPRECATION_WARNING=1</span><br></pre></td></tr></table></figure><p>随后esc，输入wq，保存退出。重新打开就不会有警告了</p><h2 id="升级MacOS-bash"><a href="#升级MacOS-bash" class="headerlink" title="升级MacOS bash"></a>升级MacOS bash</h2><p>可能你是个复古派，或者你跟我一样懒得自己配环境（公司里的脚本都是按bash写的有没有！zsh改来改去很麻烦！）这时候你就需要转回bash</p><p>但是MacOS的bash版本不能更低了。MacOS上zsh是最新版，但bash却是</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ bash --version</span><br><span class="line">GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin19)</span><br><span class="line">Copyright (C) 2007 Free Software Foundation, Inc.</span><br></pre></td></tr></table></figure><p>我滴个龟龟，这版本是刚从土里掘出来的吧？可能苹果公司很有匠人精神，还在打磨这款经典bash。但是我不是匠人，我要升级。我们直接通过homebrew安装最新版bash</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install bash</span><br></pre></td></tr></table></figure><p>这时候我们查看一下安装成功了没有，然后发现系统里有俩bash</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> -a bash</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/bash</span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure><p>这时候因为<code>/usr/local/bin/bash</code>是默认路径，假如你重启terminal你会发现你已经变成了新版bash。不过这还没完，unix系统会有安全权限等问题，我们需要把新安装的bash加入白名单，让它能成为login shell</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/shells</span><br></pre></td></tr></table></figure><p>之后再这个文件的底部加上<code>/usr/local/bin/bash</code>，结果如下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># List of acceptable shells for chpass(1).</span><br><span class="line"># Ftpd will not allow users to connect who are not using</span><br><span class="line"># one of these shells.</span><br><span class="line"></span><br><span class="line">&#x2F;bin&#x2F;bash</span><br><span class="line">&#x2F;bin&#x2F;csh</span><br><span class="line">&#x2F;bin&#x2F;dash</span><br><span class="line">&#x2F;bin&#x2F;ksh</span><br><span class="line">&#x2F;bin&#x2F;sh</span><br><span class="line">&#x2F;bin&#x2F;tcsh</span><br><span class="line">&#x2F;bin&#x2F;zsh</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure><p>最后我们将新shell设置为默认login shell</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chsh -s /usr/<span class="built_in">local</span>/bin/bash</span><br></pre></td></tr></table></figure><p>以上命令只会更改你一个人的默认shell，加入你想更改所有人的</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chsh -s /usr/<span class="built_in">local</span>/bin/bash</span><br></pre></td></tr></table></figure><p>查看下自己现在的bash版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$BASH_VERSION</span></span><br><span class="line"></span><br><span class="line">5.0.16(1)-release</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> shell </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tutorial </tag>
+            
+            <tag> code </tag>
+            
+            <tag> shell </tag>
+            
+            <tag> mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mac多Java版本管理</title>
+      <link href="/2020/03/26/Mac%E5%A4%9AJava%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/"/>
+      <url>/2020/03/26/Mac%E5%A4%9AJava%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>首先你需要有homebrew，这种Mac必备的工具怎么装就不提了，官网上有，就一行terminal命令的事。</p><p>然后要安装多个版本的Java。这个时候你假如使用：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install java</span><br></pre></td></tr></table></figure><p>那么homebrew会自动给你安装最新版本的JDK。但是我们平常开发一般用的都是JDK8，旧版JDK的安装命令如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ brew tap adoptopenjdk/openjdk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 挑一个就行了啊，adoptopenjdk8就是JDK8，要用哪个装哪个，虽然都装了也没事</span></span><br><span class="line">$ brew cask install adoptopenjdk8</span><br><span class="line">$ brew cask install adoptopenjdk9</span><br><span class="line">$ brew cask install adoptopenjdk10</span><br><span class="line">$ brew cask install adoptopenjdk11</span><br></pre></td></tr></table></figure><p>之后为了管理多版本，我们安装jenv</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install jenv</span><br></pre></td></tr></table></figure><p>安装之后将环境写到.bash_profile中（<strong>假如你系统版本为Catalina或以上，那么你应该把它写到.zshrc文件中，请把以下两行的.bash_profile都改成.zshrc）</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'export PATH="$HOME/.jenv/bin:$PATH"'</span> &gt;&gt; ~/.bash_profile</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'eval "$(jenv init -)"'</span> &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure><p>这个时候我们查看下已有的Java版本，会发现只有系统默认的Java</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ jenv versions</span><br><span class="line"></span><br><span class="line">* system (<span class="built_in">set</span> by /Users/tty/.jenv/version)</span><br></pre></td></tr></table></figure><p>接下来我们需要把我们安装的其他版本的java给加进去，这个时候就需要找到homebrew的java安装路径了。</p><p>一般来说你可以在 <code>/Library/Java/JavaVirtualMachines/</code>下找到你有的Java，比如我的JDK8是<code>/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/</code>，随后你要一直深入直到看到home文件夹，将它用以下命令放入jenv库里</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/</span><br><span class="line"></span><br><span class="line">openjdk64-1.8.0.242 added</span><br><span class="line">1.8.0.242 added</span><br><span class="line">1.8 added</span><br></pre></td></tr></table></figure><p>It’s better to rehash to tell jenv to look for all know binaries and create necessary shims</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jenv <span class="built_in">rehash</span></span><br></pre></td></tr></table></figure><p>此时再次查看系统内Java版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ jenv versions</span><br><span class="line">* system (<span class="built_in">set</span> by /Users/tty/.jenv/version)</span><br><span class="line">  1.8</span><br><span class="line">  1.8.0.242</span><br><span class="line">  openjdk64-1.8.0.242</span><br></pre></td></tr></table></figure><p>选一个版本然后运行<code>jenv global</code>命令，比如我用的1.8，就能把global变量给切到1.8版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ jenv global 1.8</span><br><span class="line">$ java -version</span><br><span class="line">openjdk version <span class="string">"1.8.0_242"</span></span><br><span class="line">OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_242-b08)</span><br><span class="line">OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.242-b08, mixed mode)</span><br></pre></td></tr></table></figure><p>输入<code>jenv -h</code>查看帮助，还有切换本地Java版本等功能</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> tutorial </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tutorial </tag>
+            
+            <tag> code </tag>
+            
+            <tag> mac </tag>
+            
+            <tag> java </tag>
             
         </tags>
       
@@ -496,7 +558,7 @@
       
       <categories>
           
-          <category> tutorial </category>
+          <category> shell </category>
           
       </categories>
       
@@ -506,6 +568,8 @@
             <tag> tutorial </tag>
             
             <tag> code </tag>
+            
+            <tag> shell </tag>
             
         </tags>
       
@@ -595,33 +659,6 @@
     
     
     <entry>
-      <title>为低分辨率屏幕开启HiDPI</title>
-      <link href="/2020/03/17/%E4%B8%BA%E4%BD%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%B1%8F%E5%B9%95%E5%BC%80%E5%90%AFHiDPI/"/>
-      <url>/2020/03/17/%E4%B8%BA%E4%BD%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%B1%8F%E5%B9%95%E5%BC%80%E5%90%AFHiDPI/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我一直不推荐Mac用户购买21:9的显示器，理由有很多。光是不买21:9的理由就不少，因为就个人的使用体验来说，21:9的生产力是远远不及双屏的生产力的，双屏的分屏控制不知道比21:9要高到哪里去了。</p><p>再者，Mac对4K以下的分辨率十分不友好，在2K，1080p中，字体发虚模糊都是很正常的事情。一切换成Windows，你就立马觉得字体变得清晰了很多，足以看出Mac对于低分屏有多不用心了。</p><p>但是因为AW3420DW近期在打折，我看也没啥4K屏有好价，便干脆再次入手了一个，希望它在AW3418DW之上有所改观。一插上电我就后悔了，熟悉的发虚字体又回来了。</p><p>这个时候唯一的解决办法就是HiDPI了。这个功能MacOS并不在低分屏上开启，所以我们要手动开启。其一共有三个步骤</p><h2 id="1-关闭SIP（System-Integrity-Protection）"><a href="#1-关闭SIP（System-Integrity-Protection）" class="headerlink" title="1. 关闭SIP（System Integrity Protection）"></a>1. 关闭SIP（System Integrity Protection）</h2><ol><li>Click the <strong>Apple symbol</strong> in the Menu bar.</li><li>Click <strong>Restart</strong></li><li>Hold down <strong>Command-R</strong> to reboot into Recovery Mode.</li><li>Click <strong>Utilities</strong>.</li><li>Select <strong>Terminal</strong>.</li><li>Type <strong><code>csrutil disable</code></strong>.</li><li>Press <strong>Return</strong> or <strong>Enter</strong> on your keyboard.</li><li>Click the <strong>Apple symbol</strong> in the Menu bar.</li><li>Click <strong>Restart</strong></li></ol><h2 id="2-使用一键脚本"><a href="#2-使用一键脚本" class="headerlink" title="2. 使用一键脚本"></a>2. 使用一键脚本</h2><p><a href="https://github.com/xzhih/one-key-hidpi" target="_blank" rel="noopener">One Key HiDPI</a></p><p>阅读其readme，中英双语，相信身为高材生的你不难搞定</p><p>其中，我们21:9的用户由于并不常见，可以选择手动输入分辨率，输入2560x1072 5120x2144就好</p><p>接下来重启，应该就能看到效果，选择一个合适的缩放即可</p><p>假如你觉得视觉效果还是不行，那是这个显示器分辨率不够高。你已经到显示效果极限了。假如你并不满意，建议还是上双4K屏幕，省心省力，而且清晰</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> tutorial </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> tutorial </tag>
-            
-            <tag> tips </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>New Hire Benefit 全解</title>
       <link href="/2020/03/17/New-Hire-Benefit-%E5%85%A8%E8%A7%A3/"/>
       <url>/2020/03/17/New-Hire-Benefit-%E5%85%A8%E8%A7%A3/</url>
@@ -643,6 +680,33 @@
             <tag> finance </tag>
             
             <tag> life </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>为低分辨率屏幕开启HiDPI</title>
+      <link href="/2020/03/17/%E4%B8%BA%E4%BD%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%B1%8F%E5%B9%95%E5%BC%80%E5%90%AFHiDPI/"/>
+      <url>/2020/03/17/%E4%B8%BA%E4%BD%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%B1%8F%E5%B9%95%E5%BC%80%E5%90%AFHiDPI/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我一直不推荐Mac用户购买21:9的显示器，理由有很多。光是不买21:9的理由就不少，因为就个人的使用体验来说，21:9的生产力是远远不及双屏的生产力的，双屏的分屏控制不知道比21:9要高到哪里去了。</p><p>再者，Mac对4K以下的分辨率十分不友好，在2K，1080p中，字体发虚模糊都是很正常的事情。一切换成Windows，你就立马觉得字体变得清晰了很多，足以看出Mac对于低分屏有多不用心了。</p><p>但是因为AW3420DW近期在打折，我看也没啥4K屏有好价，便干脆再次入手了一个，希望它在AW3418DW之上有所改观。一插上电我就后悔了，熟悉的发虚字体又回来了。</p><p>这个时候唯一的解决办法就是HiDPI了。这个功能MacOS并不在低分屏上开启，所以我们要手动开启。其一共有三个步骤</p><h2 id="1-关闭SIP（System-Integrity-Protection）"><a href="#1-关闭SIP（System-Integrity-Protection）" class="headerlink" title="1. 关闭SIP（System Integrity Protection）"></a>1. 关闭SIP（System Integrity Protection）</h2><ol><li>Click the <strong>Apple symbol</strong> in the Menu bar.</li><li>Click <strong>Restart</strong></li><li>Hold down <strong>Command-R</strong> to reboot into Recovery Mode.</li><li>Click <strong>Utilities</strong>.</li><li>Select <strong>Terminal</strong>.</li><li>Type <strong><code>csrutil disable</code></strong>.</li><li>Press <strong>Return</strong> or <strong>Enter</strong> on your keyboard.</li><li>Click the <strong>Apple symbol</strong> in the Menu bar.</li><li>Click <strong>Restart</strong></li></ol><h2 id="2-使用一键脚本"><a href="#2-使用一键脚本" class="headerlink" title="2. 使用一键脚本"></a>2. 使用一键脚本</h2><p><a href="https://github.com/xzhih/one-key-hidpi" target="_blank" rel="noopener">One Key HiDPI</a></p><p>阅读其readme，中英双语，相信身为高材生的你不难搞定</p><p>其中，我们21:9的用户由于并不常见，可以选择手动输入分辨率，输入2560x1072 5120x2144就好</p><p>接下来重启，应该就能看到效果，选择一个合适的缩放即可</p><p>假如你觉得视觉效果还是不行，那是这个显示器分辨率不够高。你已经到显示效果极限了。假如你并不满意，建议还是上双4K屏幕，省心省力，而且清晰</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> tutorial </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tutorial </tag>
+            
+            <tag> tips </tag>
             
         </tags>
       
