@@ -11,12 +11,16 @@ date: 2020-04-02 18:32:22
 tags:
 categories:
 description: MacOS自带终端实在过于辣眼睛？iTerm2 + Solarized + oh-my-zsh + agnoster 洗眼！
-cover: https://raw.githubusercontent.com/8128/PicGo/master/20200402183141.png
+cover: https://raw.githubusercontent.com/8128/PicGo/master/20200402185427.png
 top_img:
 keywords:
 ---
 
 来源English version：[ZenLulz](https://gist.github.com/ZenLulz/c812f70fc86ebdbb189d9fb82f98197e)
+
+最终效果:
+
+![](https://raw.githubusercontent.com/8128/PicGo/master/20200402183141.png)
 
 ## 安装 iTerm2
 
