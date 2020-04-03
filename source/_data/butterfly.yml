@@ -534,7 +534,7 @@ announcement:
 busuanzi:
   site_uv: true
   site_pv: true
-  page_pv: false
+  page_pv: true
 
 # 網頁開通時間
 # 格式: 月/日/年 時間
