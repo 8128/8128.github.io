@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>萧-失 | 8128's Blog</title><meta name="description" content="如果人生能重来"><meta name="keywords" content="novel,xiao"><meta name="author" content="8128,tty8128@outlook.com"><meta name="copyright" content="8128"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="robots" content="noindex"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="萧-失"><meta name="twitter:description" content="如果人生能重来"><meta name="twitter:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200405142009.png"><meta property="og:type" content="article"><meta property="og:title" content="萧-失"><meta property="og:url" content="http://8128.me/2020/04/05/%E8%90%A7-%E5%A4%B1/"><meta property="og:site_name" content="8128's Blog"><meta property="og:description" content="如果人生能重来"><meta property="og:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200405142009.png"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="http://8128.me/2020/04/05/%E8%90%A7-%E5%A4%B1/"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2/dist/disqusjs.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-158741918-1', 'auto');
+ga('send', 'pageview');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"http://8128.me/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: 'false',
+  isFontAwesomeV5: false,
+  isPhotoFigcaption: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: true  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">37</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">21</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#楔子"><span class="toc-number">1.</span> <span class="toc-text">楔子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#梦与现实"><span class="toc-number">2.</span> <span class="toc-text">梦与现实</span></a></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://raw.githubusercontent.com/8128/PicGo/master/20200405142009.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">8128's Blog</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">萧-失</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-04-05 14:15:16"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-04-05</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-04-06 10:33:10"><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-04-06</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/novel/">novel</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="post-meta__icon fa fa-file-word-o" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">1.9k</span><span class="post-meta__separator">|</span><i class="post-meta__icon fa fa-clock-o" aria-hidden="true"></i><span>阅读时长: 5 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><h1 id="楔子"><a href="#楔子" class="headerlink" title="楔子"></a>楔子</h1><p>漆黑的山林里，三人默不作声，摸黑潜行。夜色下山路并不好走，不过几百米高的山，他们花了数个小时方才趋近山顶。拨开荆棘，眼前景象顿时豁然开朗：明亮的月光下，寸草不生的山巅赫然横陈着一道数公里长的大裂谷：这裂谷宽仅数米，却横截高台，将其从中斩断。</p>
+<p>“萧，确定要这大晚上的下去？”林浩把背负着的登山绳丢在了地上，“夜里不安全。”</p>
+<p>“村民发现了我们不在村里，定然会来找我们。他们早看出来我们在打这山的主意了。”萧湜没回头，忽的问道：“你们看远处那木屋……难道有人住在这附近？”</p>
+<p>“不太可能吧，村里的人不是称这山为圣山，不能踏足的吗？”林浩瞪大了眼，望向萧湜手指向的地方。</p>
+<p>“你爸的笔记里没写什么吗？”始终在队尾喘息的夏弦问道，“这屋看起来可算有点年头了。”</p>
+<p>“没有。这是十一处地点里，记录最少的一处，只写了是道裂谷。我最好还是过去看看，你们在这里等我。”</p>
+<p>萧湜把登山设备都丢在了地上，回到树林中快速小跑到了屋后。两人见他悄然靠近木屋，接着从窗外向内偷偷张望了一眼，便转回了身来，朝裂谷做了个向下的手势。“没有人，应该是被废弃了。”</p>
+<p>两人见状便把器材拖着向裂谷边缘走去。林浩三下五除二就把器材在悬崖上安得结结实实，就想把安全绳往自己身上系，萧湜却是走上前来将安全绳一把夺走了。</p>
+<p>“你力气大，在上面和夏弦一起待着。我下去。”萧湜道。</p>
+<p>“行行行，都依你。”林浩摇了摇头，“但是你不能向下太深，不然我们看不到你的求救信号。你可得听明白了，我刚用手电向下照了照——这儿可算是深不见底。”</p>
+<p>“我知道。”</p>
+<p>“你知道个屁，你等下肯定不听。”林浩叹气，一边给他系紧了绳索，“行了，可以下去了。”</p>
+<p>萧湜没回答，冷漠地将对讲机一挂，翻身就向裂谷下攀去。</p>
+<p>“你是怎么认识这个衰仔的？”林浩再次叹气，转头整好奇向下张望的夏弦，“我现在有点后悔我接了这个单子。最初说是盗墓，我还能蹭点油水。自从上次去了罗刹江，我就不知道我们在做什么。”</p>
+<p>夏弦莞尔一笑，“我还蛮喜欢探险的，不是挺有趣吗。而且，我们说不定真的能发现什么秘密。”</p>
+<p>“这哪是探险，这简直是探命。你上次是不在，我们去罗刹江的时候可就够呛，里面埋着的那东西……”林浩说道这脸色又变了变，似乎在犹豫是否要继续向下说。</p>
+<p>“别罗里吧嗦的！在这攀爬可不简单，你们给我安静点。”对讲机中突然传出萧湜的骂声，声音中还带着喘息。</p>
+<p>林浩耸了耸肩，闭上了嘴。几人便在黑夜中沉默良久，一时仅剩绳索声。林浩在一旁看着绳索，不时向下张望着。时间久了也有些困顿，开始打哈欠。</p>
+<p>可就在这时似乎有清脆的铃铛声从远处的丛林中响起。林浩哈欠没打完便皱起了眉。他望向夏弦，轻声问道：“你听见了吗？”</p>
+<p>夏弦也露出了疑惑的神色，“这山上有人？”</p>
+<p>“半夜三更的，谁在外头摇铃铛？”</p>
+<p>两人闭上了嘴，仔细聆听。然而山林立刻便恢复了死寂，再也听不到一丝声响，就连昆虫都匿去了行踪。</p>
+<p>“可能是刚才幻听了吧。”几分钟后，夏弦歪着头，一脸不解。“可为什么我们会同时幻听？”</p>
+<p>“不知道。”林浩摆了摆手，正想松口气。谁知话音刚落，又是一声清脆的铃响。</p>
+<p>“好像……越来越近了？”夏弦有些慌张起来，“村里的人来寻我们了？”</p>
+<p>“不可能这么快吧？”林浩压低了声音，“该不会是……那屋子的主人回来了吧？”</p>
+<p>“这地方真能有人住，而且半夜还在外头游荡？”</p>
+<p>林浩握住了腰间的短匕，“管他呢。只要不是什么猛兽，总有办法能脱身。萧，别爬了，先回来！”</p>
+<p>对讲机的那段却没有回应。数十秒后方才听见断断续续的声响：</p>
+<p>“我……看到了……很……”</p>
+<p>对讲机的信号突然很差，林浩都听不清楚萧湜在说什么。</p>
+<p>“别管看到什么了。快点往上爬！”</p>
+<p>萧湜能清晰的听见林浩和夏弦的对话。不过他的注意力并没有在那若有若无的铃铛声上——他的注意力停留在了眼前的锁链上。那锁链晶莹剔透，泛着纯净洁白的荧光，不像是金属所制成的。萧湜尝试去用手触摸，却觉指尖被迫人的寒冷所刺痛。他登时收回手来。</p>
+<p>这是萧湜所遇到的第一条锁链，从裂谷的这一侧走向对面的断崖——此时他再向下一望，却见下方密密麻麻的全是链条，望不到尽头！</p>
+<p>“这下面，难不成锁着什么怪物？”萧湜倒吸一口凉气，却也兴奋地睁大了眼。可讲机的另一边忽然传来一阵嘈杂，“怎么了，林浩？”</p>
+<p>林浩听见了萧湜的问题，但是他不知应该如何回答——因为此时铃铛的主人忽然走出了山林，出现在了高台之上的月色下。</p>
+<p>夏弦和他一动都不敢动，遥遥望着木屋边上的铃铛主人。</p>
+<p>他们不确定他到底是不是一个‘人’。</p>
+<p>一袭白衣，一头长发，一柄长刀，一串铃铛。月色照亮他清秀的面庞和蓝色的眼。若闭上眼，任谁都会觉得他只是个十二三岁的美少年。可那明亮的双眼却散发着幽然凶光，令他的面色如冰山般寒冷。他在盯着二人。</p>
+<p>尽管相隔数百米，林浩还是能察觉到他在盯着自己。他有接近一米九的身高，身材健硕，比这弱不禁风的少年不知强壮多少，可却在这冷眼之下不敢妄动，屏住呼吸。</p>
+<p>少年突然开始向二人走来。</p>
+<p>“萧，你到底上来了没有？”林浩有些愠怒地骂道，接着就想站起身去拉绳。可谁知他这一站，铃铛的主人立刻加快了步伐，向林浩二人冲去。林浩大惊，不顾萧湜下方情况，开始加速向上拉绳。不料那少年竟仅仅花了十数秒便冲过了几百米的距离，来到了二人身边！</p>
+<p>林浩大叫，“我们没有敌意！”说罢便先将登山绳卡死，转身就要去拿匕首。说时迟，那时快，月光之下白芒一闪，少年手中刀已出鞘，一刀斩来！</p>
+<p>林浩哀叹，没想到自己一生结束的如此之快而又不知所谓。可直到刀光消散，长刀归鞘，他都没有发现自己身上有多出伤痕——那么少年是斩向了何处？</p>
+<p>萧湜也不知道——直到安全绳一松。</p>
+<p>惊惧之中，他坠下了裂谷。</p>
+<h1 id="梦与现实"><a href="#梦与现实" class="headerlink" title="梦与现实"></a>梦与现实</h1></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:tty8128@outlook.com">8128</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://8128.me/2020/04/05/%E8%90%A7-%E5%A4%B1/">http://8128.me/2020/04/05/%E8%90%A7-%E5%A4%B1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://8128.me" target="_blank">8128's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/novel/">novel</a><a class="post-meta__tags" href="/tags/xiao/">xiao</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/8128/PicGo/master/20200406155734.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="disqus_thread"></div><script>var disqus_config = function () {
+  this.page.url = 'http://8128.me/2020/04/05/%E8%90%A7-%E5%A4%B1/';
+  this.page.identifier = '2020/04/05/萧-失/';
+  this.page.title = '萧-失';
+};
+(function() { 
+  var d = document, s = d.createElement('script');
+  s.src = 'https://8128g.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 8128</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://8128.me/">blog</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/search/local-search.js"></script></body></html>
