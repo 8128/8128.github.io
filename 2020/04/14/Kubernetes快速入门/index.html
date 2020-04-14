@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kubernetes快速入门 | 8128's Blog</title><meta name="description" content="Kubernetes快速入门"><meta name="author" content="8128,tty8128@outlook.com"><meta name="copyright" content="8128"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Kubernetes快速入门"><meta name="twitter:description" content="Kubernetes快速入门"><meta name="twitter:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200414013618.png"><meta property="og:type" content="article"><meta property="og:title" content="Kubernetes快速入门"><meta property="og:url" content="http://8128.me/2020/04/14/Kubernetes%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"><meta property="og:site_name" content="8128's Blog"><meta property="og:description" content="Kubernetes快速入门"><meta property="og:image" content="https://raw.githubusercontent.com/8128/PicGo/master/20200414013618.png"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="http://8128.me/2020/04/14/Kubernetes%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"><link rel="next" title="关于JWT" href="http://8128.me/2020/04/13/%E5%85%B3%E4%BA%8EJWT/"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2/dist/disqusjs.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-158741918-1', 'auto');
+ga('send', 'pageview');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"http://8128.me/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: 'false',
+  isFontAwesomeV5: false,
+  isPhotoFigcaption: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: true  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">40</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">21</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#从Docker到Kubernetes"><span class="toc-text">从Docker到Kubernetes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes中的操作单元"><span class="toc-text">Kubernetes中的操作单元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minikube"><span class="toc-text">minikube</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-Deployment"><span class="toc-text">Hello Deployment</span></a></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://raw.githubusercontent.com/8128/PicGo/master/20200414013618.png)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">8128's Blog</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Kubernetes快速入门</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-04-14 00:09:09"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-04-14</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-04-14 01:36:39"><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-04-14</span></time></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="post-meta__icon fa fa-file-word-o" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">2.6k</span><span class="post-meta__separator">|</span><i class="post-meta__icon fa fa-clock-o" aria-hidden="true"></i><span>阅读时长: 8 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><p>来源： <a href="https://coder4.com/homs_online/architecture/devops.html" target="_blank" rel="noopener">https://coder4.com/homs_online/architecture/devops.html</a></p>
+<h2 id="从Docker到Kubernetes"><a href="#从Docker到Kubernetes" class="headerlink" title="从Docker到Kubernetes"></a>从Docker到Kubernetes</h2><p>前面已经提到，微服务架构离不开容器技术。</p>
+<p>为什么需要容器呢？我们先来看一个集装箱的例子：在一艘货轮上，货物按照整齐的规格码放整齐，从而可以封装进集装箱。集装箱之间不会相互影响，这大大地提升了运输效率。</p>
+<p>容器就好比这个集装箱，运行的各式应用程序是货物。为了让应用程序在生产机上跑起来，往往需要做各种配置，非常繁琐，还经常会由于系统版本等原因，和开发环境不一致，从而导致“这个程序本地好好的，放到服务器上就出Bug”这类情况，这就是环境不标准，容器可以对运行环境标准化，很好的解决这类问题。此外，不同的应用程序需要不同的应用环境，如果都部署在一台物理机上，很可能会发生包、依赖冲突，导致无法运维，有了容器后，不同的应用程序放置在不同的容器中，相互隔离开、不会相互影响。其实，虚拟机加一些脚本，也能解决上述的标准化和隔离问题，但是容器更加轻量级，性能损耗比虚拟机低很多，并且多数集成了环境的自描述语言（例如DockerFile），更方便进行维护。</p>
+<p>Docker是目前最流行的容器技术之一，按照官方的解释说明：Docker是开源的引擎，用于在开发或运维中构建、部署和运行应用程序。</p>
+<p>需要指出的是，很多人把容器技术和Docker划等号，这是不对的。目前的主流容器技术，除了Docker外，还有Rkt、LXD等。</p>
+<p>已经有了Docker，为什么还需要Kuberntes呢？因为从单击的Docker到分布式的容器集群，还有很多路要走。Kubernetes是分布式容器集群操作平台，可以轻松地完成部署、调度、扩容等操作。如果说Docker是手动挡汽车的话，那么Kubernetes相当于自动驾驶汽车，只需要很少的步骤，就可以完成复杂的容器集群管理工作。Kubernetes构建于容器引擎之上，除了支持Docker外，也支持Rtk，本书以Kubernetes和Docker为例进行讨论。</p>
+<h2 id="Kubernetes中的操作单元"><a href="#Kubernetes中的操作单元" class="headerlink" title="Kubernetes中的操作单元"></a>Kubernetes中的操作单元</h2><p>为了适应复杂的业务需求，Kubernetes中内置了不同层级的操作单元：</p>
+<ul>
+<li>Pod: Pod是Kubernetes的基本操作单元，也是应用运行的载体。如果你了解Docker的话，可以理解为Pod = 若干紧密相连的Docker + 数据卷。Pod中可能包含若干容器，它们是无法进行更细粒度的分割的，例如:微服务和它的日志收集进程。Pod内部的这些容器共享相同的资源(网络、进程通信、数据卷）</li>
+<li>Replica Set：高可用、高性能是分布式系统中常见的问题。一般都可以采用增加冗余节点的方式解决，Replica Set通过标签关联Pod，并可以设置一个副本数，以实现微服务的冗余。</li>
+<li>Deployment: Deployment描述了一个部署。在Kubernetes中，并不推荐直接启动Pod，也不推荐使用Replica Set，而建议直接使用Deployment。通过在Deployment中描述所期望的Pod、版本和副本数量，就可以实现管理、滚动升级、回滚、扩容、缩容等复杂的操作。Deployment与Pod并非是包含关系，而是相互独立的。Deployment通过“标签匹配”，可以关联若干Pod。</li>
+<li>Service: 从字面意义理解，Service就是服务组。类似的，Service也是独立于Pod、Deployment概念。它也是通过“标签匹配”的方式关联若干Pod，并对外提供了统一的服务代理。通过访问统一服务代理，流量被自动分发到所有关联的Pod上，服务代理可以根据不同策略，进行负载均衡。如果你仔细阅读了<a href="https://coder4.com/homs_online/ms-discovery/architecture/overview.md" target="_blank" rel="noopener">微服务架构概览</a>，就会明白，Kubernetes的Service就是服务发现的一种实现方式。</li>
+</ul>
+<h2 id="minikube"><a href="#minikube" class="headerlink" title="minikube"></a>minikube</h2><p>Kubernetes提供了强大的集群管理功能，当然，它的集群环境的配置较为复杂，并非简短篇幅可以说清楚。</p>
+<p>本书的核心是微服务架构，而非Kubernetes的使用，因此，我们不会详细讲解k8s集群的配置。</p>
+<p>幸运的是，k8s为我们提供了minikube，它一个用于快速开发的单机k8s环境，拥有与k8s集群完全相同的功能。本章的剩余章节，我们将使用minikube来进行讲解。</p>
+<p>关于minikube的安装，可以参考官方的这篇<a href="https://kubernetes.io/docs/tasks/tools/install-minikube/" target="_blank" rel="noopener">minikube安装教程</a>，这里不做详细展开。</p>
+<p>需要特别指出：minikube只限于开发和学习使用。对于生产环境，请务必配置Kubernetes的分布式集群，大家可以参考<a href="https://kubernetes.io/docs/home" target="_blank" rel="noopener">官方文档</a>。</p>
+<h2 id="Hello-Deployment"><a href="#Hello-Deployment" class="headerlink" title="Hello Deployment"></a>Hello Deployment</h2><p>minikube安装妥当后，让我们来部署第一个Deployment。</p>
+<p>首先，启动minikube。第一次启动需要下载ISO镜像，时间较长，请耐心等待一下。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --disk-size 50g --memory 4096 --insecure-registry "192.168.99.0/24"</span><br></pre></td></tr></table></figure>
+
+<p>上述第一次start实际是配置了minikube虚拟机的参数，我们简单解释一下:</p>
+<ul>
+<li>disk-size 磁盘空间我们给了50g。我们之后会配置私有Maven仓库，需要建立主仓库索引，默认的20g不太够用。</li>
+<li>memory 内存，给了4G，可以根据你的需求自己设定。</li>
+<li>insecure-registry 我们之后会搭建不带证书的私有仓库，所以这里预先设置好仓库的IP范围。</li>
+</ul>
+<p>提醒一下，上述minikube参数只对第一次启动(实际是创建)生效，一旦虚拟机生成完毕，这些参数的修改都不会生效了。</p>
+<p>Kubernetes支持两种操作方式：命令行参数、yaml文件定义。鉴于维护性等角度，我们更推荐推荐后者，即用yaml文件的方式。</p>
+<p>Deployment描述文件，lmsia-abc-server-deployment.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="string">//</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">lmsia-abc-server-deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">lmsia-abc-server</span> </span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">2</span></span><br><span class="line"><span class="string">//</span> <span class="string">Pod</span> <span class="string">define</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">lmsia-abc-server</span> </span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">lmsia-abc-server-ct</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">coder4/lmsia-abc-server:1.0</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">8080</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">3000</span></span><br></pre></td></tr></table></figure>
+
+<p>我们来解读一下这个yaml文件，采用自底向上的步骤：</p>
+<ul>
+<li>Pod定义：如注释标记，文件的下半部分定义了Pod信息。 　* metadata.labels.app是Pod的标签名，用于与Deployment、Replica Set和Service做关联。<ul>
+<li>spec.containers定义了Pod的名字(name)、镜像(image)和开放端口(ports)。这里使用了我预先编译好的一个微服务镜像，它集成了REST服务和RPC服务，分别监听8080端口和3000端口。</li>
+</ul>
+</li>
+<li>Deployment定义：文件的上半部分，是部署的定义。<ul>
+<li>kind类型是Deployment</li>
+<li>metadata.name是Deployment的名字，用于后续的进一步操作</li>
+<li>replica是副本数定义，这里我们的副本数(replicas)设定为2。</li>
+<li>selector.matchLabels定义了与Pod的关联，请注意selector.matchLabels与Pod中的metadata.labels需要保持一致，才能成功关联。</li>
+</ul>
+</li>
+</ul>
+<p>理解了文件内容后，让我们来新建这个部署：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f ./lmsia-abc-server-deployment.yaml</span><br></pre></td></tr></table></figure>
+
+<p>我们来看看启动了哪些Pod。这里我们以标签为查询参数。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -l app=lmsia-abc-server</span><br><span class="line"></span><br><span class="line">NAME                                          READY     STATUS    RESTARTS   AGE</span><br><span class="line">lmsia-abc-server-deployment-bd4949ff9-jcczg   1/1       Running   0          10m</span><br><span class="line">lmsia-abc-server-deployment-bd4949ff9-zqsvc   1/1       Running   0          10m</span><br></pre></td></tr></table></figure>
+
+<p>不难发现，启动了两个Pod，和我们在yaml文件中设定的副本数一致。</p>
+<p>注意：上图展示的是最终结果，Pod的启动前需要先拉取镜像，因此会存在“非Running”的中间状态。</p>
+<p>截至目前，我们已经通过Deployment的方式，成功的启动了两个Pod。前面已经介绍，镜像中的微服务对外暴露了两个端口：REST(HTTP)服务的8080端口，和RPC服务的3000端口。接下来，我们尝试访问Pod内的HTTP服务。</p>
+<p>先来获取一下IP地址，以第一个Pod为例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe pod lmsia-abc-server-deployment-bd4949ff9-jcczg</span><br><span class="line"></span><br><span class="line">Name:           lmsia-abc-server-deployment-bd4949ff9-jcczg</span><br><span class="line">....</span><br><span class="line">Status:         Running</span><br><span class="line">IP:             172.17.0.5</span><br><span class="line">Controlled By:  ReplicaSet/lmsia-abc-server-deployment-bd4949ff9</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<p>由于结果较多，这里只截取了关键的几行，可以从结果中看到，名字为“lmsia-abc-server-deployment-bd4949ff9-jcczg”的Pod，它的IP是“”172.17.0.5”。</p>
+<p>尝试访问一下，会报”No route to host”错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl http://172.17.0.5:8080/lmsia-abc/api/</span><br><span class="line"></span><br><span class="line">curl: (7) Failed to connect to 172.17.0.5 port 8080: No route to host</span><br></pre></td></tr></table></figure>
+
+<p>为什么会这样呢？因为我们启动的minikube集群实际是一个虚拟机，172.17.0.5是虚拟机的内网地址。我们执行命令的命令行，是在虚拟机外部。相当与我们从外网要访问内网地址，这自然是无法成功访问的。 要说明的是，我们这里并没有访问跟路径，而是访问了“lmsia-abc/api/”，大家可以暂且认为这是一个合法的url pattern，我们将在微服务开发中对此进行讲解。</p>
+<p>如何解决呢，有两种方案：</p>
+<ul>
+<li>登录到虚拟机上，再访问</li>
+<li>打通内网和外网 其中，第二种方案是日常工作中常见的需求，我们在OpenVPN + NAT 打通办公网与IDC](devops/openvpn-nat.md)一节中，详细介绍了一种方案。在此处，我们先采用第一种方案。</li>
+</ul>
+<p>登录到minikube虚拟机很简单：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">minikube ssh</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：若需要登录到minikube虚拟机后再执行的操作，我们会增加一个$符号，以便区分。</p>
+<p>登录到minikube虚拟机后，再次尝试Pod上的HTTP服务，可以成功访问了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">curl http://172.17.0.5:8080/lmsia-abc/api/</span></span><br><span class="line"></span><br><span class="line">Hello, REST</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们成功的创建了Deployment、查看了Pod的信息、访问了Pod上的Rest服务。</p>
+<p>最后，我们学习下如何删除Deployment。在虚拟机环境下，是没有kubectl可以使用的，所以首先要退出虚拟机。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+
+<p>然后再来删除Deployment，命令可以成功执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete deployment lmsia-abc-server-deployment</span><br><span class="line"></span><br><span class="line">deployment.extensions "lmsia-abc-server-deployment" deleted</span><br></pre></td></tr></table></figure>
+
+<p>再来看一下相关的Pod信息，发现已经找不到对应Pod了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -l app=lmsia-abc-server</span><br><span class="line"></span><br><span class="line">No resources found.</span><br></pre></td></tr></table></figure></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:tty8128@outlook.com">8128</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://8128.me/2020/04/14/Kubernetes%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">http://8128.me/2020/04/14/Kubernetes%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://8128.me" target="_blank">8128's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/8128/PicGo/master/20200414013618.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2020/04/13/%E5%85%B3%E4%BA%8EJWT/"><img class="next_cover lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200413234932.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">关于JWT</div></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="disqus_thread"></div><script>var disqus_config = function () {
+  this.page.url = 'http://8128.me/2020/04/14/Kubernetes%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/';
+  this.page.identifier = '2020/04/14/Kubernetes快速入门/';
+  this.page.title = 'Kubernetes快速入门';
+};
+(function() { 
+  var d = document, s = d.createElement('script');
+  s.src = 'https://8128g.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 8128</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://8128.me/">blog</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/search/local-search.js"></script></body></html>
