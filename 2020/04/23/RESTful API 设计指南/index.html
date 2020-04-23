@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RESTful API 设计指南 | 8128's Blog</title><meta name="description" content="RESTful API 设计指南"><meta name="author" content="8128,tty8128@outlook.com"><meta name="copyright" content="8128"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="RESTful API 设计指南"><meta name="twitter:description" content="RESTful API 设计指南"><meta name="twitter:image" content="http://8128.me/img/post.jpg"><meta property="og:type" content="article"><meta property="og:title" content="RESTful API 设计指南"><meta property="og:url" content="http://8128.me/2020/04/23/RESTful%20API%20%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97/"><meta property="og:site_name" content="8128's Blog"><meta property="og:description" content="RESTful API 设计指南"><meta property="og:image" content="http://8128.me/img/post.jpg"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="http://8128.me/2020/04/23/RESTful%20API%20%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97/"><link rel="next" title="Sinon 入门" href="http://8128.me/2020/04/22/Sinon%20%E5%85%A5%E9%97%A8/"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2/dist/disqusjs.css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-158741918-1', 'auto');
+ga('send', 'pageview');
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"http://8128.me/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: 'false',
+  isFontAwesomeV5: false,
+  isPhotoFigcaption: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: true  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">45</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">28</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#协议"><span class="toc-text">协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#域名"><span class="toc-text">域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本（Versioning）"><span class="toc-text">版本（Versioning）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路径（Endpoint）"><span class="toc-text">路径（Endpoint）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API命名规则"><span class="toc-text">API命名规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#产品名"><span class="toc-text">产品名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务名"><span class="toc-text">服务名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包名"><span class="toc-text">包名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合-ID"><span class="toc-text">集合 ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口名"><span class="toc-text">接口名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法名"><span class="toc-text">方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消息名"><span class="toc-text">消息名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举名"><span class="toc-text">枚举名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字段名"><span class="toc-text">字段名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#重复字段名（Repeated-field）"><span class="toc-text">重复字段名（Repeated field）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#时间和间隔"><span class="toc-text">时间和间隔</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#日期与时间"><span class="toc-text">日期与时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数量"><span class="toc-text">数量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List-过滤字段"><span class="toc-text">List 过滤字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List-响应"><span class="toc-text">List 响应</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#驼峰命名法"><span class="toc-text">驼峰命名法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#名字缩写"><span class="toc-text">名字缩写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP动词"><span class="toc-text">HTTP动词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤信息（Filtering）"><span class="toc-text">过滤信息（Filtering）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#状态码（Status-Codes）"><span class="toc-text">状态码（Status Codes）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误处理（Error-handling）"><span class="toc-text">错误处理（Error handling）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回结果"><span class="toc-text">返回结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hypermedia-API"><span class="toc-text">Hypermedia API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(/img/post.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">8128's Blog</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">RESTful API 设计指南</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-04-23 15:32:03"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-04-23</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-04-23 16:42:18"><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-04-23</span></time></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="post-meta__icon fa fa-file-word-o" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">4.1k</span><span class="post-meta__separator">|</span><i class="post-meta__icon fa fa-clock-o" aria-hidden="true"></i><span>阅读时长: 14 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div id="article-container"><p>原文地址：</p>
+<ul>
+<li><p><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="noopener">阮一峰</a></p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000008997508" target="_blank" rel="noopener">tailnode</a></p>
+</li>
+</ul>
+<p>网络应用程序，分为前端和后端两个部分。当前的发展趋势，就是前端设备层出不穷（手机、平板、桌面电脑、其他专用设备……）。</p>
+<p>因此，必须有一种统一的机制，方便不同的前端设备与后端进行通信。这导致API构架的流行，甚至出现<a href="http://www.google.com.hk/search?q=API+first" target="_blank" rel="noopener">“API First”</a>的设计思想。<a href="http://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank" rel="noopener">RESTful API</a>是目前比较成熟的一套互联网应用程序的API设计理论。我以前写过一篇<a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank" rel="noopener">《理解RESTful架构》</a>，探讨如何理解这个概念。</p>
+<p>今天，我将介绍RESTful API的设计细节，探讨如何设计一套合理、好用的API。我的主要参考了两篇文章（<a href="http://codeplanet.io/principles-good-restful-api-design/" target="_blank" rel="noopener">1</a>，<a href="https://bourgeois.me/rest/" target="_blank" rel="noopener">2</a>）。</p>
+<p><img src="/" class="lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200423153556.png"  alt=""></p>
+<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><p>API与用户的通信协议，总是使用<a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank" rel="noopener">HTTPs协议</a>。</p>
+<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>应该尽量将API部署在专用域名之下。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//api.example.com</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//example.org/api/</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="版本（Versioning）"><a href="#版本（Versioning）" class="headerlink" title="版本（Versioning）"></a>版本（Versioning）</h2><p>应该将API的版本号放入URL。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//api.example.com/v1/</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。<a href="https://developer.github.com/v3/media/#request-specific-version" target="_blank" rel="noopener">Github</a>采用这种做法。</p>
+<h2 id="路径（Endpoint）"><a href="#路径（Endpoint）" class="headerlink" title="路径（Endpoint）"></a>路径（Endpoint）</h2><p>路径又称”终点”（endpoint），表示API的具体网址。</p>
+<p>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。</p>
+<p>举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。</p>
+<blockquote>
+<ul>
+<li><a href="https://api.example.com/v1/zoos" target="_blank" rel="noopener">https://api.example.com/v1/zoos</a></li>
+<li><a href="https://api.example.com/v1/animals" target="_blank" rel="noopener">https://api.example.com/v1/animals</a></li>
+<li><a href="https://api.example.com/v1/employees" target="_blank" rel="noopener">https://api.example.com/v1/employees</a></li>
+</ul>
+</blockquote>
+<h2 id="API命名规则"><a href="#API命名规则" class="headerlink" title="API命名规则"></a>API命名规则</h2><blockquote>
+<p>翻译自 <a href="https://cloud.google.com/apis/design/naming_convention" target="_blank" rel="noopener">API Design Guide - Naming Conventions</a></p>
+</blockquote>
+<p>为了在长期和大量使用的 API 中提供统一的开发体验，API 中的所有名字 <strong>应该（should）</strong> :</p>
+<ul>
+<li>简单</li>
+<li>直观</li>
+<li>一致</li>
+</ul>
+<p>此文章讨论了接口、资源、集合、方法和消息的名字。</p>
+<p>因为很多开发者的母语并不是英语，这些命名约定通过鼓励使用简单、统一的短词汇来命名方法和资源来保证大部分开发者能够容易理解 API。</p>
+<ul>
+<li>API 中的名字 <strong>应该（should）</strong> 使用美式英语，例如：license（不是 licence），color（不是 colour）。</li>
+<li>使用常用的简短形式或缩写，例如： API 比 Application Programming Interface 更好。</li>
+<li>尽量使用直接、熟悉的术语，例如：描述对资源的删除（销毁）时，delete 比 erase 更好。</li>
+<li>对相同的概念使用相同的名字或术语，包括在 API 中共享的概念。</li>
+<li>避免名字重用，对不同的概念要使用不同名字。</li>
+<li>避免使用在 API 上下文中会造成混乱的过于通用的名字，它们会导致对 API 概念的误解。应该选择能够精确描述概念的名字。这对于定义一阶 API 元素的名称尤其重要。因为名字与上下文相关，所以并没有明确的名字黑名单。Instance, info 和 service 是会产生问题的名字。应该选择能够明确表达出 API 概念（例：instance 表示什么的实例？）并且容易与其他相关概念有区分（例：alert 的意思是规则，信号还是通知？）的名字。</li>
+<li>谨慎使用会与常用编程语言中的关键字有冲突的名字。</li>
+</ul>
+<h3 id="产品名"><a href="#产品名" class="headerlink" title="产品名"></a>产品名</h3><p>产品名是指 API 的产品营销名称，例如 <em>Google Calendar API</em>。在 API、UI、文档、服务条款、结账单和商业合同中使用的产品名称 <strong>应该（should）</strong> 一致。</p>
+<p>Google API <strong>必须（must）</strong> 使用 <em>Google</em> 作为产品名的前缀，除非它们像 <em>Gmail</em>, <em>Nest</em>, <em>Youtube</em> 这种有不同的品牌。一般来说产品名 <strong>应该（should）</strong> 由产品和市场部门决定。</p>
+<p>下表列出了所有相关 API 名称及其一致性的示例，有关各自名称及其约定的更多详细信息，请继续往下看。</p>
+<table>
+<thead>
+<tr>
+<th>API 名</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>产品名</td>
+<td>Google Calendar API</td>
+</tr>
+<tr>
+<td>服务名</td>
+<td>calendar.googleapis.com</td>
+</tr>
+<tr>
+<td>包名</td>
+<td>google.calendar.v3</td>
+</tr>
+<tr>
+<td>接口名</td>
+<td>google.calendar.v3.CalendarService</td>
+</tr>
+<tr>
+<td>资源目录</td>
+<td>//google/calendar/v3</td>
+</tr>
+<tr>
+<td>API 名</td>
+<td>calendar</td>
+</tr>
+</tbody></table>
+<h3 id="服务名"><a href="#服务名" class="headerlink" title="服务名"></a>服务名</h3><p>服务名 <strong>应该（should）</strong> 是一个能够被解析为一个或多个网络地址的合法 <a href="http://www.ietf.org/rfc/rfc1035.txt" target="_blank" rel="noopener">DNS 名字</a>。公有 Google API 的服务名遵循如下模式：<code>xxx.googleapis.com</code>。例如：谷歌日历的服务名是 <code>calendar.googleapis.com</code>。</p>
+<p>如果一个 API 由多个服务组成，它们 <strong>应该（should）</strong> 以能够提高可发现性的方法命名。一种方法是为这些服务名使用相同的前缀。例如服务 <code>build.googleapis.com</code> 和 <code>buildresults.googleapis.com</code> 都是 Google Build API 的一部分。</p>
+<h3 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h3><p>在 .proto 文件中定义的包名 <strong>应该（should）</strong> 与产品名和服务名相同。有版本号的包名 <strong>必须（must）</strong> 以版本号结尾。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Google Calendar API</span><br><span class="line">package google.calendar.v3;</span><br></pre></td></tr></table></figure>
+
+<p>不与服务直接关联的抽象 API，例如 Google Watcher API <strong>应该（should）</strong> 使用与产品名相同的 proto 包名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Google Watcher API</span><br><span class="line">package google.watcher.v1;</span><br></pre></td></tr></table></figure>
+
+<p>在 .proto 文件中指定的 Java 包名 <strong>必须（must）</strong> 符合标准 Java 包名的前缀（<code>com.</code>, <code>edu.</code>, <code>net.</code> 等）。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">package google.calendar.v3;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 指定 Java 包的名字，使用标准前缀 &quot;com.&quot;</span><br><span class="line">option java_package &#x3D; &quot;com.google.calendar.v3&quot;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="集合-ID"><a href="#集合-ID" class="headerlink" title="集合 ID"></a>集合 ID</h3><p><a href="http://tailnode.tk/2017/03/google-api-design-guide/resource-names/#collectionid" target="_blank" rel="noopener">集合 ID</a> <strong>应该（should）</strong> 使用美式英语的、复数形式的、首字母小写的驼峰命名法，例如：<code>events</code>, <code>children</code> 或 <code>deletedEvents</code>。</p>
+<h3 id="接口名"><a href="#接口名" class="headerlink" title="接口名"></a>接口名</h3><p>为了避免和形如 <code>pubsub.googleapis.com</code> 的<a href="http://tailnode.tk/2017/04/google-api-design-guide/naming-conventions/#service_name" target="_blank" rel="noopener">资源名</a>混淆，术语 <em>接口名</em> 指的是在 .proto 文件中定义 <code>service</code> 时使用的名字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Library is the interface name.</span><br><span class="line">service Library &#123;</span><br><span class="line">  rpc ListBooks(...) returns (...);</span><br><span class="line">  rpc ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可以认为 <em>服务名</em> 是指一组 API 的具体实现，<em>接口名</em> 是指一个 API 的抽象定义。</p>
+<p>接口名称 <strong>应该（should）</strong> 使用直观的名词，如 Calendar 或 Blob。<strong>不应该（should not）</strong> 与编程语言中已有的任何概念或运行时库冲突（如：File）。</p>
+<p>当 <em>接口名</em> 与 API 中其他名字冲突时，应该为其加上前缀（如 <code>Api</code> 或 <code>Service</code>）来进行区分。</p>
+<h3 id="方法名"><a href="#方法名" class="headerlink" title="方法名"></a>方法名</h3><p>在其 IDL 规范中，服务 <strong>可以（may）</strong> 定义与集合和资源上的方法相对应的一个或多个RPC方法。方法名 <strong>应该（should）</strong> 遵循像 <code>VerbNoun</code> 这样首字母大写的驼峰命名法的命名约定，其中名词（Noun）通常是资源类型。</p>
+<table>
+<thead>
+<tr>
+<th>动词（Verb）</th>
+<th>名词（Noun）</th>
+<th>方法名</th>
+<th>请求信息</th>
+<th>响应信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>List</td>
+<td>Book</td>
+<td>ListBooks</td>
+<td>ListBooksRequest</td>
+<td>ListBooksResponse</td>
+</tr>
+<tr>
+<td>Get</td>
+<td>Book</td>
+<td>GetBook</td>
+<td>GetBookRequest</td>
+<td>Book</td>
+</tr>
+<tr>
+<td>Create</td>
+<td>Book</td>
+<td>CreateBook</td>
+<td>CreateBookRequest</td>
+<td>Book</td>
+</tr>
+<tr>
+<td>Update</td>
+<td>Book</td>
+<td>UpdateBook</td>
+<td>UpdateBookRequest</td>
+<td>Book</td>
+</tr>
+<tr>
+<td>Rename</td>
+<td>Book</td>
+<td>RenameBook</td>
+<td>RenameBookRequest</td>
+<td>RenameBookResponse</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>Book</td>
+<td>DeleteBook</td>
+<td>DeleteBookRequest</td>
+<td>google.protobuf.Empty</td>
+</tr>
+</tbody></table>
+<h3 id="消息名"><a href="#消息名" class="headerlink" title="消息名"></a>消息名</h3><p>RPC 方法的请求与响应消息 <strong>应该（should）</strong> 以方法名分别加上 <code>Request</code> 和 <code>Response</code> 的方式命名。除非方法的请求或响应类型如下：</p>
+<ul>
+<li>空消息（使用 <code>google.protobuf.Empty</code>）</li>
+<li>资源类型</li>
+<li>代表一种操作的资源</li>
+</ul>
+<h3 id="枚举名"><a href="#枚举名" class="headerlink" title="枚举名"></a>枚举名</h3><p>枚举类型的名字 <strong>必须（must）</strong> 使用首字母大写的驼峰命名法。</p>
+<p>枚举值 <strong>必须（must）</strong> 以下划线分隔且字母全部大写的方式来命名（例如：CAPITALIZED_NAMES_WITH_UNDERSCORES）。每个枚举值 <strong>必须（must）</strong> 以分号而不是逗号结尾。第一个值 <strong>应该（should）</strong> 命名为 ENUM_TYPE_UNSPECIFIED，用于当没有明确指定枚举值时返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum FooBar &#123;</span><br><span class="line">  &#x2F;&#x2F; 第一个表示默认值，并且一定等于 0</span><br><span class="line">  FOO_BAR_UNSPECIFIED &#x3D; 0;</span><br><span class="line">  FIRST_VALUE &#x3D; 1;</span><br><span class="line">  SECOND_VALUE &#x3D; 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="字段名"><a href="#字段名" class="headerlink" title="字段名"></a>字段名</h3><p>在 .proto 文件中定义的字段名 <strong>必须（must）</strong> 以下划线分隔且字母全部小写的方式来命名（例如：lower_case_underscore_separated_names）。这些名字会遵守各编程语言的命名约定来映射到生成的代码中。</p>
+<h4 id="重复字段名（Repeated-field）"><a href="#重复字段名（Repeated-field）" class="headerlink" title="重复字段名（Repeated field）"></a>重复字段名（Repeated field）</h4><p>API 中的重复字段 <strong>必须（must）</strong> 使用合适的复数形式。这符合现有 Google API 的惯例以及外部开发人员的通常期望。</p>
+<h4 id="时间和间隔"><a href="#时间和间隔" class="headerlink" title="时间和间隔"></a>时间和间隔</h4><p><strong>应该（should）</strong> 使用 <code>google.protobuf.Timestamp</code>并且字段名 <strong>应该（should）</strong> 以 <code>time</code> 结尾来表示独立于任一时区的时间点。例如 <code>start_time</code>, <code>end_time</code>。</p>
+<p>如果表示一个活动的时间，字段名 <strong>应该（should）</strong> 使用 <code>verb_time</code> 格式，如 <code>create_time</code>, <code>update_time</code>。避免使用动词的过去时形式，如 <code>created_time</code> 或 <code>last_updated_time</code>。</p>
+<p><strong>应该（should）</strong> 使用 <code>google.protobuf.Duration</code> 来表示一个时间段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">message FlightRecord &#123;</span><br><span class="line">  google.protobuf.Timestamp takeoff_time &#x3D; 1;</span><br><span class="line">  google.protobuf.Duration flight_duration &#x3D; 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果因为遗留系统或兼容原因要使用整形来表示时间相关的字段（包含墙上时间、时间段、延迟），字段名 <strong>必须（must）</strong> 有如下形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xxx_&#123;time|duration|delay|latency&#125;_&#123;seconds|millis|micros|nanos&#125;</span><br><span class="line">message Email &#123;</span><br><span class="line">  int64 send_time_millis &#x3D; 1;</span><br><span class="line">  int64 receive_time_millis &#x3D; 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果因为遗留系统或兼容原因要使用字符串来表示时间戳，字段名 <strong>不应该（should not）</strong> 包含任何单位后缀。<strong>应该（should）</strong> 使用形如 <code>2014-07-30T10:43:17Z</code> 的 RFC 3339 格式。</p>
+<h4 id="日期与时间"><a href="#日期与时间" class="headerlink" title="日期与时间"></a>日期与时间</h4><p><strong>应该（should）</strong> 使用 <code>google.type.Date</code> 并且字段名以 <code>_date</code> 结尾来表示独立于时区与时间的日期。如果必须以字符串表示，应该使用形如 YYYY-MM-DD 的 ISO 8601 日期格式（例如 2014-07-30）。</p>
+<p><strong>应该（should）</strong> 使用 <code>google.type.TimeOfDay</code> 并且字段名以 <code>_time</code> 结尾来表示独立于时区与日期的时间。如果必须以字符串表示，应该使用形如 HH:MM:SS[.FFF] 的 ISO 8601 的 24 小时时间格式（例如 14:55:01.672）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">message StoreOpening &#123;</span><br><span class="line">  google.type.Date opening_date &#x3D; 1;</span><br><span class="line">  google.type.TimeOfDay opening_time &#x3D; 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="数量"><a href="#数量" class="headerlink" title="数量"></a>数量</h4><p>以整形表示的数量 <strong>必须（must）</strong> 包含单位。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx_&#123;bytes|width_pixels|meters&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果表示物品的数量，字段名 <strong>应该（should）</strong> 使用 <code>_count</code> 做为后缀，如 <code>node_count</code>。</p>
+<h4 id="List-过滤字段"><a href="#List-过滤字段" class="headerlink" title="List 过滤字段"></a>List 过滤字段</h4><p>如果 <code>List</code> 方法支持过滤资源，包含过滤表达式的字段 <strong>应该（should）</strong> 命名为 <code>filter</code>。例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">message ListBooksRequest &#123;</span><br><span class="line">  &#x2F;&#x2F; 父资源名</span><br><span class="line">  string parent &#x3D; 1;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 过滤表达式</span><br><span class="line">  string filter &#x3D; 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="List-响应"><a href="#List-响应" class="headerlink" title="List 响应"></a>List 响应</h4><p><code>List</code> 方法的响应消息中包含资源列表的字段名字 <strong>必须（must）</strong> 是资源名的复数形式。例如，方法 <code>CalendarApi.ListEvents()</code> <strong>必须（must）</strong> 定义响应消息 <code>ListEventsResponse</code>，此消息中包含名为 <code>events</code> 的重复字段来用于返回资源列表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">service CalendarApi &#123;</span><br><span class="line">  rpc ListEvents(ListEventsRequest) returns (ListEventsResponse) &#123;</span><br><span class="line">    option (google.api.http) &#x3D; &#123;</span><br><span class="line">      get: &quot;&#x2F;v3&#x2F;&#123;parent&#x3D;calendars&#x2F;*&#125;&#x2F;events&quot;;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message ListEventsRequest &#123;</span><br><span class="line">  string parent &#x3D; 1;</span><br><span class="line">  int32 page_size &#x3D; 2;</span><br><span class="line">  string page_token &#x3D; 3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message ListEventsResponse &#123;</span><br><span class="line">  repeated Event events &#x3D; 1;</span><br><span class="line">  string next_page_token &#x3D; 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="驼峰命名法"><a href="#驼峰命名法" class="headerlink" title="驼峰命名法"></a>驼峰命名法</h3><p>除了字段名和枚举值，在 .proto 文件中的所有定义 <strong>必须（must）</strong> 使用首字母大写的<a href="https://google.github.io/styleguide/javaguide.html#s5.3-camel-case" target="_blank" rel="noopener">驼峰命名法</a>。</p>
+<h3 id="名字缩写"><a href="#名字缩写" class="headerlink" title="名字缩写"></a>名字缩写</h3><p>对于像 <code>config</code> 和 <code>spec</code> 这种被软件工程师熟知的缩写，在 API 定义中 <strong>应该（should）</strong> 使用缩写而不是其完整形式，这会使代码便于读写。在正式的文档中 <strong>应该（should）</strong> 使用其完整形式。例如：</p>
+<ul>
+<li>config (configuration)</li>
+<li>id (identifier)</li>
+<li>spec (specification)</li>
+<li>stats (statistics)</li>
+</ul>
+<h2 id="HTTP动词"><a href="#HTTP动词" class="headerlink" title="HTTP动词"></a>HTTP动词</h2><p>对于资源的具体操作类型，由HTTP动词表示。</p>
+<p>常用的HTTP动词有下面五个（括号里是对应的SQL命令）。</p>
+<blockquote>
+<ul>
+<li>GET（SELECT）：从服务器取出资源（一项或多项）。</li>
+<li>POST（CREATE）：在服务器新建一个资源。</li>
+<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。</li>
+<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。</li>
+<li>DELETE（DELETE）：从服务器删除资源。</li>
+</ul>
+</blockquote>
+<p>还有两个不常用的HTTP动词。</p>
+<blockquote>
+<ul>
+<li>HEAD：获取资源的元数据。</li>
+<li>OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。</li>
+</ul>
+</blockquote>
+<p>下面是一些例子。</p>
+<blockquote>
+<ul>
+<li>GET /zoos：列出所有动物园</li>
+<li>POST /zoos：新建一个动物园</li>
+<li>GET /zoos/ID：获取某个指定动物园的信息</li>
+<li>PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）</li>
+<li>PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）</li>
+<li>DELETE /zoos/ID：删除某个动物园</li>
+<li>GET /zoos/ID/animals：列出某个指定动物园的所有动物</li>
+<li>DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物</li>
+</ul>
+</blockquote>
+<h2 id="过滤信息（Filtering）"><a href="#过滤信息（Filtering）" class="headerlink" title="过滤信息（Filtering）"></a>过滤信息（Filtering）</h2><p>如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。</p>
+<p>下面是一些常见的参数。</p>
+<blockquote>
+<ul>
+<li>?limit=10：指定返回记录的数量</li>
+<li>?offset=10：指定返回记录的开始位置。</li>
+<li>?page=2&amp;per_page=100：指定第几页，以及每页的记录数。</li>
+<li>?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</li>
+<li>?animal_type_id=1：指定筛选条件</li>
+</ul>
+</blockquote>
+<p>参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，GET /zoo/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。</p>
+<h2 id="状态码（Status-Codes）"><a href="#状态码（Status-Codes）" class="headerlink" title="状态码（Status Codes）"></a>状态码（Status Codes）</h2><p>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。</p>
+<blockquote>
+<ul>
+<li>200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</li>
+<li>201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</li>
+<li>202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</li>
+<li>204 NO CONTENT - [DELETE]：用户删除数据成功。</li>
+<li>400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</li>
+<li>401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</li>
+<li>403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</li>
+<li>404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</li>
+<li>406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</li>
+<li>410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</li>
+<li>422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</li>
+<li>500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。</li>
+</ul>
+</blockquote>
+<p>状态码的完全列表参见<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank" rel="noopener">这里</a>。</p>
+<h2 id="错误处理（Error-handling）"><a href="#错误处理（Error-handling）" class="headerlink" title="错误处理（Error handling）"></a>错误处理（Error handling）</h2><p>如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    error: <span class="string">"Invalid API key"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a>返回结果</h2><p>针对不同操作，服务器向用户返回的结果应该符合以下规范。</p>
+<blockquote>
+<ul>
+<li>GET /collection：返回资源对象的列表（数组）</li>
+<li>GET /collection/resource：返回单个资源对象</li>
+<li>POST /collection：返回新生成的资源对象</li>
+<li>PUT /collection/resource：返回完整的资源对象</li>
+<li>PATCH /collection/resource：返回完整的资源对象</li>
+<li>DELETE /collection/resource：返回一个空文档</li>
+</ul>
+</blockquote>
+<h2 id="Hypermedia-API"><a href="#Hypermedia-API" class="headerlink" title="Hypermedia API"></a>Hypermedia API</h2><p>RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。</p>
+<p>比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"link"</span>: &#123;</span><br><span class="line">  <span class="string">"rel"</span>:   <span class="string">"collection https://www.example.com/zoos"</span>,</span><br><span class="line">  <span class="string">"href"</span>:  <span class="string">"https://api.example.com/zoos"</span>,</span><br><span class="line">  <span class="string">"title"</span>: <span class="string">"List of zoos"</span>,</span><br><span class="line">  <span class="string">"type"</span>:  <span class="string">"application/vnd.yourformat+json"</span></span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型。</p>
+<p>Hypermedia API的设计被称为<a href="http://en.wikipedia.org/wiki/HATEOAS" target="_blank" rel="noopener">HATEOAS</a>。Github的API就是这种设计，访问<a href="https://api.github.com/" target="_blank" rel="noopener">api.github.com</a>会得到一个所有可用API的网址列表。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"current_user_url"</span>: <span class="string">"https://api.github.com/user"</span>,</span><br><span class="line">  <span class="string">"authorizations_url"</span>: <span class="string">"https://api.github.com/authorizations"</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>从上面可以看到，如果想获取当前用户的信息，应该去访问<a href="https://api.github.com/user" target="_blank" rel="noopener">api.github.com/user</a>，然后就得到了下面结果。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"message"</span>: <span class="string">"Requires authentication"</span>,</span><br><span class="line">  <span class="string">"documentation_url"</span>: <span class="string">"https://developer.github.com/v3"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码表示，服务器给出了提示信息，以及文档的网址。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>（1）API的身份认证应该使用<a href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html" target="_blank" rel="noopener">OAuth 2.0</a>框架。</p>
+<p>（2）服务器返回的数据格式，应该尽量使用JSON，避免使用XML。</p>
+<p>（完）</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:tty8128@outlook.com">8128</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://8128.me/2020/04/23/RESTful%20API%20%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97/">http://8128.me/2020/04/23/RESTful%20API%20%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://8128.me" target="_blank">8128's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/post.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2020/04/22/Sinon%20%E5%85%A5%E9%97%A8/"><img class="next_cover lazyload" data-src="https://raw.githubusercontent.com/8128/PicGo/master/20200422162724.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Sinon 入门</div></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div id="disqus_thread"></div><script>var disqus_config = function () {
+  this.page.url = 'http://8128.me/2020/04/23/RESTful%20API%20%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97/';
+  this.page.identifier = '2020/04/23/RESTful API 设计指南/';
+  this.page.title = 'RESTful API 设计指南';
+};
+(function() { 
+  var d = document, s = d.createElement('script');
+  s.src = 'https://8128g.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 8128</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="http://8128.me/">blog</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="/js/search/local-search.js"></script></body></html>
