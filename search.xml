@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>VSCode技巧</title>
+      <link href="/2020/04/28/VSCode%E6%8A%80%E5%B7%A7/"/>
+      <url>/2020/04/28/VSCode%E6%8A%80%E5%B7%A7/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>原文：<a href="https://segmentfault.com/a/1190000009396435" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009396435</a></p><h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><h3 id="基础编辑"><a href="#基础编辑" class="headerlink" title="基础编辑"></a>基础编辑</h3><table><thead><tr><th>快捷键</th><th>作用</th></tr></thead><tbody><tr><td><code>Ctrl+X</code></td><td>剪切</td></tr><tr><td><code>Ctrl+C</code></td><td>复制</td></tr><tr><td><code>Ctrl+Shift+K</code></td><td>删除当前行</td></tr><tr><td><code>Ctrl+Enter</code></td><td>在当前行之后插入一行</td></tr><tr><td><code>Ctrl+Shift+Enter</code></td><td>在当前行之前插入一行</td></tr><tr><td><code>Alt+Up/Down</code></td><td>移动当前行上下</td></tr><tr><td><code>Shift+Alt+Up/Down</code></td><td>在当前行上下复制当前行</td></tr><tr><td><code>Ctrl+Up/Down</code></td><td>行视图上下偏移</td></tr><tr><td><code>Alt+PageUp/PageDown</code></td><td>屏视图上下偏移</td></tr><tr><td><code>Ctrl+Shift+[</code></td><td>折叠区域代码</td></tr><tr><td><code>Ctrl+Shift+]</code></td><td>展开区域代码</td></tr><tr><td><code>Ctrl+K Ctrl+[</code></td><td>折叠区域内所有代码（包括子域和父域）</td></tr><tr><td><code>Ctrl+K Ctrl+]</code></td><td>展开区域内所有代码（包括子域和父域）</td></tr><tr><td><code>Ctrl+K Ctrl+0</code></td><td>折叠所有区域内的代码</td></tr><tr><td><code>Ctrl+K Ctrl+J</code></td><td>展开所有区域内的代码</td></tr><tr><td><code>Ctrl+K Ctrl+C</code></td><td>添加行注释</td></tr><tr><td><code>Ctrl+K Ctrl+U</code></td><td>删除行注释</td></tr><tr><td><code>Ctrl+/</code></td><td>添加关闭行注释</td></tr><tr><td><code>Shift+Alt+A</code></td><td>添加关闭区域注释</td></tr><tr><td><code>Alt+Z</code></td><td>添加关闭自动换行</td></tr></tbody></table><h3 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h3><table><thead><tr><th>快捷键</th><th>作用</th></tr></thead><tbody><tr><td><code>Ctrl+T</code></td><td>启动符号搜索框</td></tr><tr><td><code>Ctrl+G</code></td><td>跳转行</td></tr><tr><td><code>Ctrl+P</code></td><td>启动文件搜索框，方便快速打开文件</td></tr><tr><td><code>Ctrl+Shift+O</code></td><td>跳转至符号处</td></tr><tr><td><code>Ctrl+Shift+M</code></td><td>显示问题面板</td></tr><tr><td><code>F8</code></td><td>跳转到下一个错误或者警告</td></tr><tr><td><code>Shift+F8</code></td><td>跳转到上一个错误或者警告</td></tr><tr><td><code>Ctrl+Shift+Tab</code></td><td>切换到最近打开的文件</td></tr><tr><td><code>Alt+Left/Right</code></td><td>向前/向后</td></tr></tbody></table><h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><table><thead><tr><th>快捷键</th><th>作用</th></tr></thead><tbody><tr><td><code>Ctrl+F</code></td><td>查询</td></tr><tr><td><code>Ctrl+H</code></td><td>替换</td></tr><tr><td><code>F3</code></td><td>查找下一个</td></tr><tr><td><code>Shift+F3</code></td><td>查找上一个</td></tr><tr><td><code>Alt+Enter</code></td><td>选中所有匹配的查询字符</td></tr><tr><td><code>Alt+C</code></td><td>切换是否区分大小写查找</td></tr><tr><td><code>Alt+R</code></td><td>切换是否使用正则查找</td></tr><tr><td><code>Alt+W</code></td><td>切换是否使用全词查找</td></tr></tbody></table><h3 id="编辑-窗口管理"><a href="#编辑-窗口管理" class="headerlink" title="编辑/窗口管理"></a>编辑/窗口管理</h3><table><thead><tr><th>快捷键</th><th>作用</th></tr></thead><tbody><tr><td><code>Ctrl+Shift+N</code></td><td>打开新窗口</td></tr><tr><td><code>Ctrl+W</code></td><td>关闭窗口</td></tr><tr><td><code>Ctrl+F4</code></td><td>关闭当前编辑窗口</td></tr><tr><td><code>Ctrl+K F</code></td><td>关闭当前打开的文件夹</td></tr><tr><td><code>Ctrl+\</code></td><td>拆分编辑器（最多拆分为三块）</td></tr><tr><td><code>Ctrl+1/2/3</code></td><td>切换焦点在不同的拆分窗口</td></tr></tbody></table><h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><table><thead><tr><th>快捷键</th><th>作用</th></tr></thead><tbody><tr><td><code>Ctrl+N</code></td><td>新建文件</td></tr><tr><td><code>Ctrl+O</code></td><td>打开文件</td></tr><tr><td><code>Ctrl+S</code></td><td>保存文件</td></tr><tr><td><code>Ctrl+K S</code></td><td>保存所有文件</td></tr><tr><td><code>Ctrl+Shift+S</code></td><td>另存为</td></tr><tr><td><code>Ctrl+K W</code></td><td>关闭一组拆分的窗口</td></tr><tr><td><code>Ctrl+K Ctrl+W</code></td><td>关闭所有编辑窗口</td></tr><tr><td><code>Ctrl+Shift+T</code></td><td>撤销最近关闭的一个文件编辑窗口</td></tr><tr><td><code>Ctrl+Tab</code></td><td>调出最近打开的文件列表，重复按会切换到下一个</td></tr><tr><td><code>Ctrl+Shift+Tab</code></td><td>调出最近打开的文件列表，重复按会切换到上一个</td></tr><tr><td><code>Ctrl+K P</code></td><td>复制当前打开文件的存放路径</td></tr><tr><td><code>Ctrl+K R</code></td><td>打开当前编辑文件存放位置【文件管理器】</td></tr><tr><td><code>Ctrl+K O</code></td><td>在新的编辑器中打开当前编辑的文件</td></tr></tbody></table><h3 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h3><table><thead><tr><th>快捷键</th><th>作用</th></tr></thead><tbody><tr><td><code>F11</code></td><td>切换全屏显示</td></tr><tr><td><code>Ctrl+B</code></td><td>切换侧边栏显示隐藏</td></tr><tr><td><code>Ctrl+Shift+V</code></td><td>Markdown预览切换</td></tr></tbody></table><h3 id="光标操作"><a href="#光标操作" class="headerlink" title="光标操作"></a>光标操作</h3><table><thead><tr><th>快捷键</th><th>作用</th></tr></thead><tbody><tr><td><code>Home/End</code></td><td>光标跳转到行首/尾</td></tr><tr><td><code>Ctrl+Home/End</code></td><td>光标跳转到页首/尾</td></tr><tr><td><code>Alt+Click</code></td><td>插入光标（支持多个）</td></tr><tr><td><code>Ctrl+Alt+Up/Down</code></td><td>上下插入光标（支持多个）</td></tr><tr><td><code>Ctrl+U</code></td><td>撤销最后一次光标操作</td></tr><tr><td><code>Shift+Alt+I</code></td><td>插入光标到选中范围内所有行行尾</td></tr><tr><td><code>Ctrl+I</code></td><td>选中当前行</td></tr><tr><td><code>Shift+Alt+(drag mouse)</code></td><td>在鼠标拖动区域的每行行尾插入光标</td></tr><tr><td><code>Ctrl+F2</code></td><td>选择当前字符的所有出现，然后进行操作</td></tr><tr><td><code>Ctrl+Shift+\</code></td><td>跳转到与当前括号匹配的括号</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> code </category>
+          
+          <category> tutorial </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tutorial </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RESTful API 设计指南</title>
       <link href="/2020/04/23/RESTful%20API%20%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97/"/>
       <url>/2020/04/23/RESTful%20API%20%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97/</url>
