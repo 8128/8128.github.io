@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>Artillery教程</title>
+      <link href="/2020/05/28/Artillery%E6%95%99%E7%A8%8B/"/>
+      <url>/2020/05/28/Artillery%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近写了个SQS服务，是说在我们系统调用docusign第三方服务的时候，假如docusign的burst limit被点爆了，我们就得把request放SQS那边去。这个手动测试就比较麻烦了，毕竟要把docusign先点爆了，才能让我发送的request送到SQS去。</p><p>如何点爆一个API呢，实际上<a href="https://artillery.io/docs/getting-started/" target="_blank" rel="noopener">Artillery</a>就是一个很方便的工具。安装过程我直接放官方的：</p><p>Once Node.js is installed, install Artillery with:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g artillery</span><br></pre></td></tr></table></figure><p>To check that the installation succeeded, run:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">artillery -V</span><br></pre></td></tr></table></figure><p>你要是很简单的只是一个快速测试，没有详细需求，可以直接这么用：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">artillery quick --count 10 -n 20 https://artillery.io/</span><br></pre></td></tr></table></figure><p>然后详细使用方法，我先放几行代码然后在代码后方用注释解释一下：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">config:</span></span><br><span class="line">  <span class="attr">target:</span> <span class="string">"https://demo.docusign.net"</span> <span class="comment">#你要点爆的target</span></span><br><span class="line">  <span class="attr">phases:</span> <span class="comment">#表示不同阶段，注意，每个阶段都会走完一整个scenario流程</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">duration:</span> <span class="number">60</span> <span class="comment">#维持时间为60s</span></span><br><span class="line">      <span class="attr">arrivalRate:</span> <span class="number">400</span> <span class="comment">#并发数400，同时有400个用户在瞎jb点这个target</span></span><br><span class="line">  <span class="attr">processor:</span> <span class="string">"./getEnvelope.js"</span> <span class="comment">#你的自定义javascript文件，这里面可以放函数，比方说我里面有genJWT这个函数，然后我module.exports了它，我接下来就可以用export名调用这个函数</span></span><br><span class="line"><span class="attr">scenarios:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">"get envelope for account accountId:xxxxxx"</span></span><br><span class="line">    <span class="attr">flow:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">function:</span> <span class="string">"genJWT"</span> <span class="comment">#我调用的函数名，同时这是这个workflow的第一步。注意，整个workflow都会被一起重新运行，你添加phase并不会说是第一个phase跑第一个flow。</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">post:</span> <span class="comment"># 一个post请求</span></span><br><span class="line">          <span class="attr">url:</span> <span class="string">"https://account-d.docusign.com/oauth/token"</span></span><br><span class="line">          <span class="attr">afterResponse:</span> <span class="string">"logResponse"</span> <span class="comment"># 也是自定义函数，接收返回的信息</span></span><br><span class="line">          <span class="attr">json:</span></span><br><span class="line">            <span class="attr">grant_type:</span> <span class="string">"urn:ietf:params:oauth:grant-type:jwt-bearer"</span></span><br><span class="line">            <span class="attr">assertion:</span> <span class="string">"<span class="template-variable">&#123;&#123; jwt &#125;&#125;</span>"</span> <span class="comment"># 这是从我的prosessor中返回的一个值</span></span><br><span class="line">          <span class="attr">capture:</span></span><br><span class="line">            <span class="attr">json:</span> <span class="string">"$.access_token"</span></span><br><span class="line">            <span class="attr">as:</span> <span class="string">"access_token"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">get:</span></span><br><span class="line">          <span class="attr">url:</span> <span class="string">"/restapi/v2.1/accounts/xxxxxxxx"</span> <span class="comment">#这是一个相对路径，会被加在target后面。这也是flow的第三部</span></span><br><span class="line">          <span class="attr">afterResponse:</span> <span class="string">"logResponse"</span></span><br><span class="line">          <span class="attr">headers:</span></span><br><span class="line">            <span class="attr">authorization:</span> <span class="string">"Bearer <span class="template-variable">&#123;&#123; access_token &#125;&#125;</span>"</span></span><br></pre></td></tr></table></figure><p>然后其中提到的processor，我是这么写的：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">genJWT</span>(<span class="params">context, events, done</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> jwt = <span class="string">'xxxxxxxx'</span>;</span><br><span class="line">  context.vars[<span class="string">'jwt'</span>] = jwt; <span class="comment">//在这里我相当于定义了环境变量，Artillery就能调用这个jwt了</span></span><br><span class="line">  <span class="keyword">return</span> done();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">logResponse</span>(<span class="params">requestParams, response, context, ee, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(response.headers); <span class="comment">//在这里我打印了我的headers，我用这个headers来看burst limit还剩多少</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  genJWT,</span><br><span class="line">  logResponse,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>应该解释得还算清楚吧</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tutorial </tag>
+            
+            <tag> code </tag>
+            
+            <tag> javascript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>股票基本面分析</title>
+      <link href="/2020/05/25/%E8%82%A1%E7%A5%A8%E5%9F%BA%E6%9C%AC%E9%9D%A2%E5%88%86%E6%9E%90/"/>
+      <url>/2020/05/25/%E8%82%A1%E7%A5%A8%E5%9F%BA%E6%9C%AC%E9%9D%A2%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><p>每只股票，首先看市值Market Capacity，市盈率(PE Ratio(TTM)) [Price–earnings ratio, Trailing Twelve Months]和每股盈利(EPS TTM)</p><h3 id="市值"><a href="#市值" class="headerlink" title="市值"></a>市值</h3><p>上市公司在证券市场上的市场价格总值，所有股票的总价值 </p><p>市值超过2000亿美金：超级大盘股 mega cap</p><p>超过100亿美金：大盘股large cap 10B</p><p>20-100亿：中盘股mid cap 2-10B</p><p>3-20亿：小盘股small cap 300M-2B</p><p>5000万-3亿：微型股票micro cap 50M - 300M</p><p>小于5000万：nano cap &lt;50M</p><p>市值越小的公司，一般股价波动会越大</p><h3 id="市盈率PE"><a href="#市盈率PE" class="headerlink" title="市盈率PE"></a>市盈率PE</h3><p>市场对于一只股票在未来盈利能力的期望，当一只股票的PE数字越高时，代表市场对这一只股票在未来盈利的能力预测越高</p><p>一般公司的PE在10-25，低于10的时候说明公司在未来的发展十分的慢。但是这一数值最好和同领域的其他公司做比较，因为不同领域此数值相差较大。科技公司都有较高的PE</p><h3 id="每股盈利EPS"><a href="#每股盈利EPS" class="headerlink" title="每股盈利EPS"></a>每股盈利EPS</h3><p>这一数字表示这一家公司在最近一年当中一股赚了多少钱。该数字最好与过往数字进行比较，来判断好不好。该数字仍然是越大越好</p><h2 id="判断公司财政"><a href="#判断公司财政" class="headerlink" title="判断公司财政"></a>判断公司财政</h2><p>财表分为损益表Income Statement，资产负债表Balance Sheet，现金流量Cash Flow。</p><h3 id="损益表Income-Statement"><a href="#损益表Income-Statement" class="headerlink" title="损益表Income Statement"></a>损益表Income Statement</h3><p>三个最重要的指标</p><h4 id="总收益Total-Revenue"><a href="#总收益Total-Revenue" class="headerlink" title="总收益Total Revenue"></a>总收益Total Revenue</h4><p>一家公司在过去一季或一年当中从销售获得的总收入。一般会和过往三年进行比较。好的增长指标大约在10%-20%，而增长速度大于20%是个很好的迹象</p><h4 id="净收益Net-Income"><a href="#净收益Net-Income" class="headerlink" title="净收益Net Income"></a>净收益Net Income</h4><p>显示的是一家公司在除去所有开销之后，剩余的收入。是指在利润总额中按规定缴纳了所得税之后公司的利润留存，一般也称为税后利润或净收入。好的数字一般在10%-20%，大于20%为很好。</p><p>当一家公司的净收益在下跌的时候，我们需要去看看到底是总收益在下跌还是花费太多</p><h4 id="研究发展R-amp-D"><a href="#研究发展R-amp-D" class="headerlink" title="研究发展R&amp;D"></a>研究发展R&amp;D</h4><p>花在research和development上的钱。对于公司未来的盈利能力有很大的影响。但投资者也要去了解到底这些金钱的使用是不是合理的</p><h3 id="资产负债表Balance-Sheet"><a href="#资产负债表Balance-Sheet" class="headerlink" title="资产负债表Balance Sheet"></a>资产负债表Balance Sheet</h3><h4 id="总现金Total-Cash"><a href="#总现金Total-Cash" class="headerlink" title="总现金Total Cash"></a>总现金Total Cash</h4><p>越多越好，可以看他们是否有足够的现金去交付债务或投资业务</p><h4 id="目前资产Current-Assets"><a href="#目前资产Current-Assets" class="headerlink" title="目前资产Current Assets"></a>目前资产Current Assets</h4><p>流动资产，企业可以在一年内变现或者运用的资产</p><h4 id="总资产Total-Assets"><a href="#总资产Total-Assets" class="headerlink" title="总资产Total Assets"></a>总资产Total Assets</h4><p>能带来紧急利益的全部资产</p><h4 id="目前负债Current-Liability"><a href="#目前负债Current-Liability" class="headerlink" title="目前负债Current Liability"></a>目前负债Current Liability</h4><p>一年内到期的负债</p><h4 id="总负债Total-Liabilities"><a href="#总负债Total-Liabilities" class="headerlink" title="总负债Total Liabilities"></a>总负债Total Liabilities</h4><p>因为过去的交易或事件未来必须要牺牲的经济利益</p><h3 id="基本财政分析"><a href="#基本财政分析" class="headerlink" title="基本财政分析"></a>基本财政分析</h3><p>利用以上八个数字可分析出四个比率</p><h4 id="流动比率Current-Ratio"><a href="#流动比率Current-Ratio" class="headerlink" title="流动比率Current Ratio"></a>流动比率Current Ratio</h4><p>衡量短期负债清偿能力最常用的比率，衡量企业短期风险的指标</p><p>流动比率Current Ratio = 目前资产Current Assets  / 目前负债Current Liability</p><p>良好&gt;2， 一般1-2， 不良&lt;1</p><p>约为1时表示公司流动资产只能刚好支付短期债务，低于1时已有立即的麻烦，但是假如比率远高于产业平均水准，表示公司持有太多现金却没有好好运用，或是未以股利形式还给股东</p><p>科技公司的流动比率一般较低</p><h4 id="资产负债率Debt-Asset-ratio"><a href="#资产负债率Debt-Asset-ratio" class="headerlink" title="资产负债率Debt Asset ratio"></a>资产负债率Debt Asset ratio</h4><p>一家公司所有的资产当中有多少是债务。美国普遍大型公司的平均负债比率为50%-60%，科技公司的资产负债率一般较高</p><p>负债比率Debt Asset ratio = 总负债Total Liabilities / 总资产Total Assets</p><h4 id="销售回报率ROS-Return-On-Sales"><a href="#销售回报率ROS-Return-On-Sales" class="headerlink" title="销售回报率ROS(Return On Sales)"></a>销售回报率ROS(Return On Sales)</h4><p>每销售一美元所赚取利润的数量，反映盈利能力，越多越好。需要跟同行，或者跟过往比较</p><p>ROS = 净收入Net Income  / 总收入Total Revenue</p><h4 id="股本回报率ROE-Return-On-Equity"><a href="#股本回报率ROE-Return-On-Equity" class="headerlink" title="股本回报率ROE Return On Equity"></a>股本回报率ROE Return On Equity</h4><p>业主投资的报酬率。是用以评估公司盈利能力的指标，可以用作比较同一行业内不同企业盈利能力的拥有指标</p><p>然而，公司的股权收益高不代表盈利能力强。部分行业由于不需要太多资产投入，所以通常都有较高ROE，例如咨询公司。有些行业需要投入大量基础建筑才能产生盈利，例如炼油厂。所以，不能单以ROE判定公司的盈利能力。一般而言，资本密集行业的进入门槛较高，竞争较少，相反高ROE但低资产的行业则较易进入，面对较大竞争。所以ROE应用作比较相同行业。</p><p>股本回报率ROE＝净收入Net Income／股东股本（shareholder’s equity）</p><p>一般10%-20%数字不错</p><h2 id="了解公司和其产品，投资咨询"><a href="#了解公司和其产品，投资咨询" class="headerlink" title="了解公司和其产品，投资咨询"></a>了解公司和其产品，投资咨询</h2><p>直接前往google搜索公司名字+investor relation，随后在官网找他们给出的10K报告，其中会有财政数字，业务简介等等</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> finance </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> finance </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>proxyquire偷换import</title>
       <link href="/2020/05/19/proxyquire%E5%81%B7%E6%8D%A2import/"/>
       <url>/2020/05/19/proxyquire%E5%81%B7%E6%8D%A2import/</url>
@@ -153,9 +207,9 @@
             
             <tag> code </tag>
             
-            <tag> microservice </tag>
-            
             <tag> docker </tag>
+            
+            <tag> microservice </tag>
             
             <tag> container </tag>
             
@@ -937,9 +991,9 @@
       
         <tags>
             
-            <tag> blog </tag>
-            
             <tag> travel </tag>
+            
+            <tag> blog </tag>
             
             <tag> life </tag>
             
@@ -1240,9 +1294,9 @@
       
         <tags>
             
-            <tag> blog </tag>
-            
             <tag> travel </tag>
+            
+            <tag> blog </tag>
             
         </tags>
       
@@ -1267,9 +1321,9 @@
       
         <tags>
             
-            <tag> blog </tag>
-            
             <tag> travel </tag>
+            
+            <tag> blog </tag>
             
         </tags>
       
