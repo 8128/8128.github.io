@@ -43,6 +43,8 @@ artillery quick --count 10 -n 20 https://artillery.io/
 
 然后详细使用方法，我先放几行代码然后在代码后方用注释解释一下：
 
+`docusignLoad.yml`
+
 ```yml
 config:
   target: "https://demo.docusign.net" #你要点爆的target
@@ -72,6 +74,8 @@ scenarios:
 
 然后其中提到的processor，我是这么写的：
 
+`getEnvelope.js`
+
 ```js
 async function genJWT(context, events, done) {
   const jwt = 'xxxxxxxx';
@@ -89,5 +93,8 @@ module.exports = {
 }
 ```
 
-应该解释得还算清楚吧
+应该解释得还算清楚吧。最后运行：
 
+```shell
+artillery run docusignLoad.yml
+```
