@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>TypeScript中type,interface和array</title>
+      <link href="/2020/06/05/TypeScript%E4%B8%ADtype,interface%E5%92%8Carray/"/>
+      <url>/2020/06/05/TypeScript%E4%B8%ADtype,interface%E5%92%8Carray/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近写type写的我脑阔疼，因为每个人的表达方式都不一样……我在下面举例几种：</p><p>这是一套用法</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ESignDefinitions.ts</span></span><br><span class="line"><span class="keyword">export</span> enum ESignRecipientType &#123;</span><br><span class="line">  SIGNER = <span class="string">'SIGNER'</span>,</span><br><span class="line">  VIEW_ONLY = <span class="string">'VIEW_ONLY'</span>,</span><br><span class="line">  EXTERNAL = <span class="string">'EXTERNAL'</span>,</span><br><span class="line">  CARBON_COPY = <span class="string">'CARBON_COPY'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用可直接使用 ESignRecipientType.SIGNER </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// CreateEnvelopeSchema.ts</span></span><br><span class="line"><span class="keyword">const</span> envelopeRecipientSchema = Joi.object(&#123;</span><br><span class="line">  type: Joi.valid(_.values(ESignRecipientType)).required(),</span><br><span class="line">  partyId: Joi.string().required(),</span><br><span class="line">  name: Joi.string().optional(),</span><br><span class="line">  email: Joi.string().optional(),</span><br><span class="line">  roleName: Joi.string().optional(),</span><br><span class="line">  isExternal: Joi.boolean().required(),</span><br><span class="line">&#125;).unknown();</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// eSign/types/type.d.ts</span></span><br><span class="line">declare namespace ESign &#123;</span><br><span class="line">  type RecipientTypes = <span class="string">'SIGNER'</span> | <span class="string">'VIEW_ONLY'</span> | <span class="string">'CARBON_COPY'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare namespace ESignCreateEnvelope &#123;</span><br><span class="line"></span><br><span class="line">  interface IEnvelopeRecipient &#123;</span><br><span class="line">    type: ESign.RecipientTypes;</span><br><span class="line">    partyId: string;</span><br><span class="line">    name?: string;</span><br><span class="line">    email?: string;</span><br><span class="line">    roleName?: string;</span><br><span class="line">    isExternal: boolean;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>第二套:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> STATUS_TYPES = [<span class="string">'VIEWED'</span>, <span class="string">'SIGNED'</span>, <span class="string">'DECLINED'</span>, <span class="string">'WAITING'</span>, <span class="string">'YET_TO_SEND'</span>] <span class="keyword">as</span> <span class="keyword">const</span>;</span><br><span class="line"><span class="keyword">const</span> StatusTypes = createDefinitionObject(STATUS_TYPES);</span><br><span class="line">type StatusType = keyof <span class="keyword">typeof</span> StatusTypes;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the createDefinitionObject it used</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createDefinitionObject</span>&lt;<span class="title">T</span> <span class="title">extends</span> <span class="title">string</span> | <span class="title">number</span>&gt;(<span class="params">elems: readonly T[]</span>): </span>&#123; [K <span class="keyword">in</span> T]: K &#125; &#123;</span><br><span class="line">  <span class="keyword">return</span> _.zipObject(elems, elems) <span class="keyword">as</span> any <span class="keyword">as</span> &#123; [K <span class="keyword">in</span> T]: K &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> SignerInfoSchema = Joi.object().keys(&#123;</span><br><span class="line">  type: Joi.string().valid(SIGNER_TYPES), <span class="comment">//here</span></span><br><span class="line">  borrowerId: Joi.string().when(<span class="string">'type'</span>, &#123; <span class="attr">is</span>: SignerTypes.BORROWER, <span class="attr">then</span>: Joi.required() &#125;),</span><br><span class="line">  name: Joi.string().required(),</span><br><span class="line">  email: Joi.string().required(),</span><br><span class="line">  clientUserId: Joi.alternatives().try(Joi.string(), Joi.number()).required(),</span><br><span class="line">  docLink: Joi.string().optional(),</span><br><span class="line">  status: Joi.string().valid(STATUS_TYPES),</span><br><span class="line">  firstViewed: DateTimeSchema.optional(),</span><br><span class="line">  signedAt: DateTimeSchema.optional(),</span><br><span class="line">  declinedToSignAt: DateTimeSchema.optional(),</span><br><span class="line">  viewedIP: Joi.string().ip().optional(),</span><br><span class="line">  signedIP: Joi.string().ip().optional(),</span><br><span class="line">  declinedIP: Joi.string().ip().optional(),</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// types.d.ts</span></span><br><span class="line">type StatusTypes = <span class="keyword">import</span>(<span class="string">'../schemas/EnvelopeSchemas'</span>).StatusType;</span><br><span class="line"></span><br><span class="line">interface ISigner &#123;</span><br><span class="line">    type?: SignerTypes;</span><br><span class="line">    borrowerId?: string; </span><br><span class="line">    name: string;</span><br><span class="line">    email: string;</span><br><span class="line">    clientUserId: string | number;</span><br><span class="line">    docLink?: string;</span><br><span class="line">    status?: StatusTypes;</span><br><span class="line">    firstViewed?: number;</span><br><span class="line">    signedAt?: number;</span><br><span class="line">    declinedToSignAt?: number;</span><br><span class="line">    viewedIP?: string;</span><br><span class="line">    signedIP?: string;</span><br><span class="line">    declinedIP?: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这是另一套用法：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// EnvelopeSchemas.ts</span></span><br><span class="line"><span class="comment">// disclosures is temporary until we can safely download documents for all followUps.</span></span><br><span class="line"><span class="keyword">const</span> PARENT_TYPES: ESign.ParentTypes[] = [<span class="string">'disclosuresFollowUp'</span>, <span class="string">'followUp'</span>, <span class="string">'process'</span>];</span><br><span class="line"><span class="keyword">const</span> ParentTypes = _.zipObject(PARENT_TYPES, PARENT_TYPES);</span><br></pre></td></tr></table></figure><p>待解决：怎么实现type的向下兼容</p><p>比如我有一个type是有三个属性，另一个type有四个属性，但其中三个都是前者包含的。然后我想把第一个type传入以第二个type作为interface的函数中，如何让他们兼容</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> javascript </tag>
+            
+            <tag> node </tag>
+            
+            <tag> typescript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Artillery教程</title>
       <link href="/2020/05/28/Artillery%E6%95%99%E7%A8%8B/"/>
       <url>/2020/05/28/Artillery%E6%95%99%E7%A8%8B/</url>
@@ -647,9 +678,9 @@
             
             <tag> tutorial </tag>
             
-            <tag> mac </tag>
-            
             <tag> mouse </tag>
+            
+            <tag> mac </tag>
             
         </tags>
       
@@ -1031,6 +1062,33 @@
     
     
     <entry>
+      <title>Virtualenv简明教程</title>
+      <link href="/2020/03/19/Virtualenv%E6%95%99%E7%A8%8B/"/>
+      <url>/2020/03/19/Virtualenv%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr><p><strong>作者：Andrew_liu</strong></p><p><strong>链接：<a href="https://www.jianshu.com/p/08c657bd34f1" target="_blank" rel="noopener">https://www.jianshu.com/p/08c657bd34f1</a></strong></p><p><strong>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</strong></p><p><code>virtualenv</code>创建一个拥有自己安装目录的环境, 这个环境不与其他虚拟环境共享库, 能够方便的管理python版本和管理python库</p><h2 id="1-安装Virtualenv"><a href="#1-安装Virtualenv" class="headerlink" title="1. 安装Virtualenv"></a>1. 安装Virtualenv</h2><p>使用<code>pip</code>安装Virtualenv, 使用过python的都应该知道<code>pip</code>包管理神器吧, 即使不知道, 网站也有大把的教程, 不过推荐查看<a href="https://link.jianshu.com?t=https://pip.pypa.io/en/latest/installing.html" target="_blank" rel="noopener">官方安装指南</a></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pip install virtualenv</span><br><span class="line">//或者由于权限问题使用sudo临时提升权限</span><br><span class="line">$ sudo pip install virtualenv</span><br></pre></td></tr></table></figure><h2 id="2-virtualenv基本使用"><a href="#2-virtualenv基本使用" class="headerlink" title="2. virtualenv基本使用"></a>2. virtualenv基本使用</h2><p>现在开始使用virtualenv管理python环境</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  Test git:(master)$ virtualenv ENV  <span class="comment">#创建一个名为ENV的目录, 并且安装了ENV/bin/python, 创建了lib,include,bin目录,安装了pip</span></span><br><span class="line">New python executable <span class="keyword">in</span> </span><br><span class="line">Installing setuptools, pip...done.</span><br><span class="line">  </span><br><span class="line">➜  Test git:(master)$ <span class="built_in">cd</span> ENV</span><br><span class="line">➜  ENV git:(master)$ ll</span><br><span class="line">drwxr-xr-x  14 andrew_liu  staff  476 12  8 08:49 bin</span><br><span class="line">drwxr-xr-x   3 andrew_liu  staff  102 12  8 08:49 include</span><br><span class="line">drwxr-xr-x   3 andrew_liu  staff  102 12  8 08:49 lib</span><br></pre></td></tr></table></figure><ul><li><code>lib</code>,所有安装的python库都会放在这个目录中的<code>lib/pythonx.x/site-packages/</code>下</li><li><code>bin</code>,<code>bin/python</code>是在当前环境是使用的python解释器</li></ul><blockquote><p>如果在命令行中运行<code>virtualenv --system-site-packages ENV</code>, 会继承<code>/usr/lib/python2.7/site-packages</code>下的所有库, 最新版本virtualenv把把访问全局<code>site-packages</code>作为默认行为<br> default behavior.</p></blockquote><h3 id="2-1-激活virtualenv"><a href="#2-1-激活virtualenv" class="headerlink" title="2.1. 激活virtualenv"></a>2.1. 激活virtualenv</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ENV目录下使用如下命令</span></span><br><span class="line">➜  ENV git:(master)$ <span class="built_in">source</span> ./bin/activate  <span class="comment">#激活当前virtualenv</span></span><br><span class="line">(ENV)➜  ENV git:(master)$ <span class="comment">#注意终端发生了变化</span></span><br></pre></td></tr></table></figure><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#使用<span class="selector-tag">pip</span>查看当前库</span><br><span class="line">(ENV)➜  ENV git:(master)$ pip list</span><br><span class="line"><span class="selector-tag">pip</span> (1<span class="selector-class">.5</span><span class="selector-class">.6</span>)</span><br><span class="line"><span class="selector-tag">setuptools</span> (3<span class="selector-class">.6</span>)</span><br><span class="line"><span class="selector-tag">wsgiref</span> (0<span class="selector-class">.1</span><span class="selector-class">.2</span>) #发现在只有这三个</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">pip</span> <span class="selector-tag">freeze</span>  #显示所有依赖</span><br><span class="line"><span class="selector-tag">pip</span> <span class="selector-tag">freeze</span> &gt; <span class="selector-tag">requirement</span><span class="selector-class">.txt</span>  #生成<span class="selector-tag">requirement</span><span class="selector-class">.txt</span>文件</span><br><span class="line"><span class="selector-tag">pip</span> <span class="selector-tag">install</span> <span class="selector-tag">-r</span> <span class="selector-tag">requirement</span><span class="selector-class">.txt</span>  #根据<span class="selector-tag">requirement</span><span class="selector-class">.txt</span>生成相同的环境</span><br></pre></td></tr></table></figure><h3 id="2-2-关闭virtualenv"><a href="#2-2-关闭virtualenv" class="headerlink" title="2.2. 关闭virtualenv"></a>2.2. 关闭virtualenv</h3><p>使用下面命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ deactivate</span><br></pre></td></tr></table></figure><h3 id="2-3-指定python版本"><a href="#2-3-指定python版本" class="headerlink" title="2.3. 指定python版本"></a>2.3. 指定python版本</h3><p>可以使用<code>-p PYTHON_EXE</code>选项在创建虚拟环境的时候指定python版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建python2.7虚拟环境</span></span><br><span class="line">➜  Test git:(master) $ virtualenv -p /usr/bin/python2.7 ENV2.7</span><br><span class="line">Running virtualenv with interpreter /usr/bin/python2.7</span><br><span class="line">New python executable <span class="keyword">in</span> ENV2.7/bin/python</span><br><span class="line">Installing setuptools, pip...done.</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建python3.4虚拟环境</span></span><br><span class="line">➜  Test git:(master) $ virtualenv -p /usr/<span class="built_in">local</span>/bin/python3.4 ENV3.4</span><br><span class="line">Running virtualenv with interpreter /usr/<span class="built_in">local</span>/bin/python3.4</span><br><span class="line">Using base prefix <span class="string">'/Library/Frameworks/Python.framework/Versions/3.4'</span></span><br><span class="line">New python executable <span class="keyword">in</span> ENV3.4/bin/python3.4</span><br><span class="line">Also creating executable <span class="keyword">in</span> ENV3.4/bin/python</span><br><span class="line">Installing setuptools, pip...done.</span><br></pre></td></tr></table></figure><blockquote><p>到此已经可以解决python版本冲突问题和python库不同版本的问题</p></blockquote><h2 id="3-其他"><a href="#3-其他" class="headerlink" title="3. 其他"></a>3. 其他</h2><h3 id="3-1-生成可打包环境"><a href="#3-1-生成可打包环境" class="headerlink" title="3.1. 生成可打包环境"></a>3.1. 生成可打包环境</h3><p>某些特殊需求下,可能没有网络, 我们期望直接打包一个ENV, 可以解压后直接使用, 这时候可以使用<code>virtualenv -relocatable</code>指令将ENV修改为可更改位置的ENV</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对当前已经创建的虚拟环境更改为可迁移</span></span><br><span class="line">➜  ENV3.4 git:(master) ✗ virtualenv --relocatable ./</span><br><span class="line">Making script ./bin/easy_install relative</span><br><span class="line">Making script ./bin/easy_install-3.4 relative</span><br><span class="line">Making script ./bin/pip relative</span><br><span class="line">Making script ./bin/pip3 relative</span><br><span class="line">Making script ./bin/pip3.4 relative</span><br></pre></td></tr></table></figure><h3 id="3-2-获得帮助"><a href="#3-2-获得帮助" class="headerlink" title="3.2. 获得帮助"></a>3.2. 获得帮助</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virtualenv -h</span><br></pre></td></tr></table></figure><p>当前的ENV都被修改为相对路径, 可以打包当前目录, 上传到其他位置使用</p><blockquote><p>这并不能使虚拟环境跨平台使用</p></blockquote><h2 id="4-参考链接"><a href="#4-参考链接" class="headerlink" title="4. 参考链接"></a>4. 参考链接</h2><p><a href="https://link.jianshu.com?t=http://virtualenv.readthedocs.org/en/latest/virtualenv.html" target="_blank" rel="noopener">virtualenv官方文档</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> tutorial </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tutorial </tag>
+            
+            <tag> code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Bash Shell编程入门</title>
       <link href="/2020/03/19/Bash-Shell%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/"/>
       <url>/2020/03/19/Bash-Shell%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/</url>
@@ -1052,33 +1110,6 @@
             <tag> code </tag>
             
             <tag> shell </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Virtualenv简明教程</title>
-      <link href="/2020/03/19/Virtualenv%E6%95%99%E7%A8%8B/"/>
-      <url>/2020/03/19/Virtualenv%E6%95%99%E7%A8%8B/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr><p><strong>作者：Andrew_liu</strong></p><p><strong>链接：<a href="https://www.jianshu.com/p/08c657bd34f1" target="_blank" rel="noopener">https://www.jianshu.com/p/08c657bd34f1</a></strong></p><p><strong>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</strong></p><p><code>virtualenv</code>创建一个拥有自己安装目录的环境, 这个环境不与其他虚拟环境共享库, 能够方便的管理python版本和管理python库</p><h2 id="1-安装Virtualenv"><a href="#1-安装Virtualenv" class="headerlink" title="1. 安装Virtualenv"></a>1. 安装Virtualenv</h2><p>使用<code>pip</code>安装Virtualenv, 使用过python的都应该知道<code>pip</code>包管理神器吧, 即使不知道, 网站也有大把的教程, 不过推荐查看<a href="https://link.jianshu.com?t=https://pip.pypa.io/en/latest/installing.html" target="_blank" rel="noopener">官方安装指南</a></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pip install virtualenv</span><br><span class="line">//或者由于权限问题使用sudo临时提升权限</span><br><span class="line">$ sudo pip install virtualenv</span><br></pre></td></tr></table></figure><h2 id="2-virtualenv基本使用"><a href="#2-virtualenv基本使用" class="headerlink" title="2. virtualenv基本使用"></a>2. virtualenv基本使用</h2><p>现在开始使用virtualenv管理python环境</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜  Test git:(master)$ virtualenv ENV  <span class="comment">#创建一个名为ENV的目录, 并且安装了ENV/bin/python, 创建了lib,include,bin目录,安装了pip</span></span><br><span class="line">New python executable <span class="keyword">in</span> </span><br><span class="line">Installing setuptools, pip...done.</span><br><span class="line">  </span><br><span class="line">➜  Test git:(master)$ <span class="built_in">cd</span> ENV</span><br><span class="line">➜  ENV git:(master)$ ll</span><br><span class="line">drwxr-xr-x  14 andrew_liu  staff  476 12  8 08:49 bin</span><br><span class="line">drwxr-xr-x   3 andrew_liu  staff  102 12  8 08:49 include</span><br><span class="line">drwxr-xr-x   3 andrew_liu  staff  102 12  8 08:49 lib</span><br></pre></td></tr></table></figure><ul><li><code>lib</code>,所有安装的python库都会放在这个目录中的<code>lib/pythonx.x/site-packages/</code>下</li><li><code>bin</code>,<code>bin/python</code>是在当前环境是使用的python解释器</li></ul><blockquote><p>如果在命令行中运行<code>virtualenv --system-site-packages ENV</code>, 会继承<code>/usr/lib/python2.7/site-packages</code>下的所有库, 最新版本virtualenv把把访问全局<code>site-packages</code>作为默认行为<br> default behavior.</p></blockquote><h3 id="2-1-激活virtualenv"><a href="#2-1-激活virtualenv" class="headerlink" title="2.1. 激活virtualenv"></a>2.1. 激活virtualenv</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ENV目录下使用如下命令</span></span><br><span class="line">➜  ENV git:(master)$ <span class="built_in">source</span> ./bin/activate  <span class="comment">#激活当前virtualenv</span></span><br><span class="line">(ENV)➜  ENV git:(master)$ <span class="comment">#注意终端发生了变化</span></span><br></pre></td></tr></table></figure><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#使用<span class="selector-tag">pip</span>查看当前库</span><br><span class="line">(ENV)➜  ENV git:(master)$ pip list</span><br><span class="line"><span class="selector-tag">pip</span> (1<span class="selector-class">.5</span><span class="selector-class">.6</span>)</span><br><span class="line"><span class="selector-tag">setuptools</span> (3<span class="selector-class">.6</span>)</span><br><span class="line"><span class="selector-tag">wsgiref</span> (0<span class="selector-class">.1</span><span class="selector-class">.2</span>) #发现在只有这三个</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">pip</span> <span class="selector-tag">freeze</span>  #显示所有依赖</span><br><span class="line"><span class="selector-tag">pip</span> <span class="selector-tag">freeze</span> &gt; <span class="selector-tag">requirement</span><span class="selector-class">.txt</span>  #生成<span class="selector-tag">requirement</span><span class="selector-class">.txt</span>文件</span><br><span class="line"><span class="selector-tag">pip</span> <span class="selector-tag">install</span> <span class="selector-tag">-r</span> <span class="selector-tag">requirement</span><span class="selector-class">.txt</span>  #根据<span class="selector-tag">requirement</span><span class="selector-class">.txt</span>生成相同的环境</span><br></pre></td></tr></table></figure><h3 id="2-2-关闭virtualenv"><a href="#2-2-关闭virtualenv" class="headerlink" title="2.2. 关闭virtualenv"></a>2.2. 关闭virtualenv</h3><p>使用下面命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ deactivate</span><br></pre></td></tr></table></figure><h3 id="2-3-指定python版本"><a href="#2-3-指定python版本" class="headerlink" title="2.3. 指定python版本"></a>2.3. 指定python版本</h3><p>可以使用<code>-p PYTHON_EXE</code>选项在创建虚拟环境的时候指定python版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建python2.7虚拟环境</span></span><br><span class="line">➜  Test git:(master) $ virtualenv -p /usr/bin/python2.7 ENV2.7</span><br><span class="line">Running virtualenv with interpreter /usr/bin/python2.7</span><br><span class="line">New python executable <span class="keyword">in</span> ENV2.7/bin/python</span><br><span class="line">Installing setuptools, pip...done.</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建python3.4虚拟环境</span></span><br><span class="line">➜  Test git:(master) $ virtualenv -p /usr/<span class="built_in">local</span>/bin/python3.4 ENV3.4</span><br><span class="line">Running virtualenv with interpreter /usr/<span class="built_in">local</span>/bin/python3.4</span><br><span class="line">Using base prefix <span class="string">'/Library/Frameworks/Python.framework/Versions/3.4'</span></span><br><span class="line">New python executable <span class="keyword">in</span> ENV3.4/bin/python3.4</span><br><span class="line">Also creating executable <span class="keyword">in</span> ENV3.4/bin/python</span><br><span class="line">Installing setuptools, pip...done.</span><br></pre></td></tr></table></figure><blockquote><p>到此已经可以解决python版本冲突问题和python库不同版本的问题</p></blockquote><h2 id="3-其他"><a href="#3-其他" class="headerlink" title="3. 其他"></a>3. 其他</h2><h3 id="3-1-生成可打包环境"><a href="#3-1-生成可打包环境" class="headerlink" title="3.1. 生成可打包环境"></a>3.1. 生成可打包环境</h3><p>某些特殊需求下,可能没有网络, 我们期望直接打包一个ENV, 可以解压后直接使用, 这时候可以使用<code>virtualenv -relocatable</code>指令将ENV修改为可更改位置的ENV</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对当前已经创建的虚拟环境更改为可迁移</span></span><br><span class="line">➜  ENV3.4 git:(master) ✗ virtualenv --relocatable ./</span><br><span class="line">Making script ./bin/easy_install relative</span><br><span class="line">Making script ./bin/easy_install-3.4 relative</span><br><span class="line">Making script ./bin/pip relative</span><br><span class="line">Making script ./bin/pip3 relative</span><br><span class="line">Making script ./bin/pip3.4 relative</span><br></pre></td></tr></table></figure><h3 id="3-2-获得帮助"><a href="#3-2-获得帮助" class="headerlink" title="3.2. 获得帮助"></a>3.2. 获得帮助</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virtualenv -h</span><br></pre></td></tr></table></figure><p>当前的ENV都被修改为相对路径, 可以打包当前目录, 上传到其他位置使用</p><blockquote><p>这并不能使虚拟环境跨平台使用</p></blockquote><h2 id="4-参考链接"><a href="#4-参考链接" class="headerlink" title="4. 参考链接"></a>4. 参考链接</h2><p><a href="https://link.jianshu.com?t=http://virtualenv.readthedocs.org/en/latest/virtualenv.html" target="_blank" rel="noopener">virtualenv官方文档</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> tutorial </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> tutorial </tag>
-            
-            <tag> code </tag>
             
         </tags>
       
@@ -1141,6 +1172,33 @@
     
     
     <entry>
+      <title>为低分辨率屏幕开启HiDPI</title>
+      <link href="/2020/03/17/%E4%B8%BA%E4%BD%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%B1%8F%E5%B9%95%E5%BC%80%E5%90%AFHiDPI/"/>
+      <url>/2020/03/17/%E4%B8%BA%E4%BD%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%B1%8F%E5%B9%95%E5%BC%80%E5%90%AFHiDPI/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我一直不推荐Mac用户购买21:9的显示器，理由有很多。光是不买21:9的理由就不少，因为就个人的使用体验来说，21:9的生产力是远远不及双屏的生产力的，双屏的分屏控制不知道比21:9要高到哪里去了。</p><p>再者，Mac对4K以下的分辨率十分不友好，在2K，1080p中，字体发虚模糊都是很正常的事情。一切换成Windows，你就立马觉得字体变得清晰了很多，足以看出Mac对于低分屏有多不用心了。</p><p>但是因为AW3420DW近期在打折，我看也没啥4K屏有好价，便干脆再次入手了一个，希望它在AW3418DW之上有所改观。一插上电我就后悔了，熟悉的发虚字体又回来了。</p><p>这个时候唯一的解决办法就是HiDPI了。这个功能MacOS并不在低分屏上开启，所以我们要手动开启。其一共有三个步骤</p><h2 id="1-关闭SIP（System-Integrity-Protection）"><a href="#1-关闭SIP（System-Integrity-Protection）" class="headerlink" title="1. 关闭SIP（System Integrity Protection）"></a>1. 关闭SIP（System Integrity Protection）</h2><ol><li>Click the <strong>Apple symbol</strong> in the Menu bar.</li><li>Click <strong>Restart</strong></li><li>Hold down <strong>Command-R</strong> to reboot into Recovery Mode.</li><li>Click <strong>Utilities</strong>.</li><li>Select <strong>Terminal</strong>.</li><li>Type <strong><code>csrutil disable</code></strong>.</li><li>Press <strong>Return</strong> or <strong>Enter</strong> on your keyboard.</li><li>Click the <strong>Apple symbol</strong> in the Menu bar.</li><li>Click <strong>Restart</strong></li></ol><h2 id="2-使用一键脚本"><a href="#2-使用一键脚本" class="headerlink" title="2. 使用一键脚本"></a>2. 使用一键脚本</h2><p><a href="https://github.com/xzhih/one-key-hidpi" target="_blank" rel="noopener">One Key HiDPI</a></p><p>阅读其readme，中英双语，相信身为高材生的你不难搞定</p><p>其中，我们21:9的用户由于并不常见，可以选择手动输入分辨率，输入2560x1072 5120x2144就好</p><p>接下来重启，应该就能看到效果，选择一个合适的缩放即可</p><p>假如你觉得视觉效果还是不行，那是这个显示器分辨率不够高。你已经到显示效果极限了。假如你并不满意，建议还是上双4K屏幕，省心省力，而且清晰</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> tutorial </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tutorial </tag>
+            
+            <tag> tips </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>New Hire Benefit 全解</title>
       <link href="/2020/03/17/New-Hire-Benefit-%E5%85%A8%E8%A7%A3/"/>
       <url>/2020/03/17/New-Hire-Benefit-%E5%85%A8%E8%A7%A3/</url>
@@ -1162,33 +1220,6 @@
             <tag> finance </tag>
             
             <tag> life </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>为低分辨率屏幕开启HiDPI</title>
-      <link href="/2020/03/17/%E4%B8%BA%E4%BD%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%B1%8F%E5%B9%95%E5%BC%80%E5%90%AFHiDPI/"/>
-      <url>/2020/03/17/%E4%B8%BA%E4%BD%8E%E5%88%86%E8%BE%A8%E7%8E%87%E5%B1%8F%E5%B9%95%E5%BC%80%E5%90%AFHiDPI/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我一直不推荐Mac用户购买21:9的显示器，理由有很多。光是不买21:9的理由就不少，因为就个人的使用体验来说，21:9的生产力是远远不及双屏的生产力的，双屏的分屏控制不知道比21:9要高到哪里去了。</p><p>再者，Mac对4K以下的分辨率十分不友好，在2K，1080p中，字体发虚模糊都是很正常的事情。一切换成Windows，你就立马觉得字体变得清晰了很多，足以看出Mac对于低分屏有多不用心了。</p><p>但是因为AW3420DW近期在打折，我看也没啥4K屏有好价，便干脆再次入手了一个，希望它在AW3418DW之上有所改观。一插上电我就后悔了，熟悉的发虚字体又回来了。</p><p>这个时候唯一的解决办法就是HiDPI了。这个功能MacOS并不在低分屏上开启，所以我们要手动开启。其一共有三个步骤</p><h2 id="1-关闭SIP（System-Integrity-Protection）"><a href="#1-关闭SIP（System-Integrity-Protection）" class="headerlink" title="1. 关闭SIP（System Integrity Protection）"></a>1. 关闭SIP（System Integrity Protection）</h2><ol><li>Click the <strong>Apple symbol</strong> in the Menu bar.</li><li>Click <strong>Restart</strong></li><li>Hold down <strong>Command-R</strong> to reboot into Recovery Mode.</li><li>Click <strong>Utilities</strong>.</li><li>Select <strong>Terminal</strong>.</li><li>Type <strong><code>csrutil disable</code></strong>.</li><li>Press <strong>Return</strong> or <strong>Enter</strong> on your keyboard.</li><li>Click the <strong>Apple symbol</strong> in the Menu bar.</li><li>Click <strong>Restart</strong></li></ol><h2 id="2-使用一键脚本"><a href="#2-使用一键脚本" class="headerlink" title="2. 使用一键脚本"></a>2. 使用一键脚本</h2><p><a href="https://github.com/xzhih/one-key-hidpi" target="_blank" rel="noopener">One Key HiDPI</a></p><p>阅读其readme，中英双语，相信身为高材生的你不难搞定</p><p>其中，我们21:9的用户由于并不常见，可以选择手动输入分辨率，输入2560x1072 5120x2144就好</p><p>接下来重启，应该就能看到效果，选择一个合适的缩放即可</p><p>假如你觉得视觉效果还是不行，那是这个显示器分辨率不够高。你已经到显示效果极限了。假如你并不满意，建议还是上双4K屏幕，省心省力，而且清晰</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> tutorial </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> tutorial </tag>
-            
-            <tag> tips </tag>
             
         </tags>
       
